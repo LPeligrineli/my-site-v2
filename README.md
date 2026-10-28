@@ -1,4 +1,4 @@
-# Site · Página inicial (desktop) — design reference
+# Site v2 · Início — design reference
 
 This is a design mockup created in a visual design tool, exported as a
 standalone page. Treat it as a REFERENCE MOCKUP, not production code:
@@ -9,7 +9,7 @@ rather than copy wholesale.
 
 ## Contents
 
-- `Site-Home.dc.html` — the artboard (a Design Component: an `<x-dc>`
+- `Site2-Inicio.dc.html` — the artboard (a Design Component: an `<x-dc>`
   template + a small logic class). The values to replicate live in its
   inline `style="…"` attributes and the `<helmet><style>` block.
 - `support.js`, `vendor/react*.js` — the runtime that renders the
@@ -17,5 +17,5 @@ rather than copy wholesale.
 
 ## Viewing
 
-Serve the folder (e.g. `python3 -m http.server`) and open `Site-Home.dc.html`;
+Serve the folder (e.g. `python3 -m http.server`) and open `Site2-Inicio.dc.html`;
 some browsers block the scripts over file://.

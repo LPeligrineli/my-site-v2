@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
-<title>Site Mykelly Peligrineli: página inicial</title>
+<title>Site v2: Início</title>
 <script src="./vendor/react.js"></script>
 <script src="./vendor/react-dom.js"></script>
 <script src="./support.js"></script>
@@ -14,6 +14,7 @@
 <style>
 body{margin:0}
 a{color:inherit}a:hover{opacity:.85}
+button{font:inherit}
 @keyframes flutua-a{from{transform:translate(0,0)}to{transform:translate(0,-20px)}}
 @keyframes flutua-b{from{transform:translate(0,0)}to{transform:translate(16px,12px)}}
 @keyframes flutua-c{from{transform:translate(0,0)}to{transform:translate(-14px,10px)}}
@@ -21,22 +22,39 @@ a{color:inherit}a:hover{opacity:.85}
 @keyframes pingo{from{opacity:0;transform:translateY(-0.5em)}to{opacity:1;transform:none}}
 @keyframes respira{0%,100%{transform:scale(1)}50%{transform:scale(1.2)}}
 @keyframes abre{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+@keyframes menu{from{opacity:0}to{opacity:1}}
 .entra{animation:entra .9s cubic-bezier(.2,.7,.2,1) both}
 .d1{animation-delay:.1s}.d2{animation-delay:.22s}.d3{animation-delay:.34s}.d4{animation-delay:.46s}.d5{animation-delay:.58s}
 .pingo{animation:pingo .8s cubic-bezier(.3,1.4,.5,1) both}
 .p1{animation-delay:.5s}.p2{animation-delay:.65s}.p3{animation-delay:.8s}
 .respira{animation:respira 4.5s ease-in-out infinite}
+.respira-2{animation:respira 4.5s ease-in-out 1.5s infinite}
+.respira-3{animation:respira 4.5s ease-in-out 3s infinite}
 .resposta{animation:abre .45s ease-out both}
+.menu-cel{animation:menu .3s ease-out both}
 .pill{transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s}
 .pill:hover{opacity:1;transform:translateY(-2px);box-shadow:0 10px 24px rgba(42,18,25,.18)}
 .card{transition:transform .45s cubic-bezier(.2,.7,.2,1),box-shadow .45s}
 .card:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(78,26,43,.10)}
 .ponto{transition:transform .45s cubic-bezier(.2,.7,.2,1)}
 .linha:hover .ponto{transform:scale(1.35)}
+.seta-ic{transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+.seta:hover{opacity:1}.seta:hover .seta-ic{transform:translateX(4px)}
 .sinal{transition:transform .35s}
 .faq:hover .sinal{transform:scale(1.12)}
 .opcao{transition:background .2s,border-color .2s}
 .opcao:hover{border-color:#4E1A2B !important}
+.nav-link{transition:opacity .2s}
+.nav-menu{display:none !important}
+.barra-cel{display:none !important}
+@media (max-width: 760px){
+.nav-links{display:none !important}
+.nav-menu{display:inline-flex !important}
+.barra-cel{display:flex !important}
+.fontes{display:none !important}
+.so-desk{display:none !important}
+.respiro-cel{height:92px}
+}
 @media (prefers-reduced-motion: no-preference){html{scroll-behavior:smooth}}
 @supports (animation-timeline: view()){
 @keyframes revela{from{opacity:0;transform:translateY(36px)}to{opacity:1;transform:none}}
@@ -48,12 +66,12 @@ a{color:inherit}a:hover{opacity:.85}
 .px-b{animation:px-b linear both;animation-timeline:view();animation-range:cover}
 .px-foto{animation:px-foto linear both;animation-timeline:view();animation-range:exit}
 }
-@media (prefers-reduced-motion: reduce){.flutua,.entra,.pingo,.respira,.resposta,.revela,.px-a,.px-b,.px-foto{animation:none !important}.pill,.card,.ponto,.sinal{transition:none !important}}
+@media (prefers-reduced-motion: reduce){.flutua,.entra,.pingo,.respira,.respira-2,.respira-3,.resposta,.menu-cel,.revela,.px-a,.px-b,.px-foto{animation:none !important}.pill,.card,.ponto,.sinal,.seta-ic{transition:none !important}}
 </style>
 </helmet>
-<div style="width: 100%; background: #F7F1E8; color: #2A1219; font-family: 'DM Sans', 'Avenir Next', 'Segoe UI', sans-serif; font-size: 17px; line-height: 1.6">
+<div style="width: 100%; min-height: 100vh; background: #F7F1E8; color: #2A1219; font-family: 'DM Sans', 'Avenir Next', 'Segoe UI', sans-serif; font-size: 17px; line-height: 1.6">
 
-<aside aria-label="Teste de fontes dos títulos" style="position: fixed; top: 112px; right: 20px; z-index: 50; width: 264px; max-width: calc(100vw - 40px); box-sizing: border-box; background: #FCF9F3; color: #2A1219; border-radius: 24px; box-shadow: 0 16px 48px rgba(42,18,25,.22); padding: 10px; font-family: 'DM Sans', 'Avenir Next', 'Segoe UI', sans-serif; font-size: 14px; line-height: 1.4">
+<aside class="fontes" aria-label="Teste de fontes dos títulos" style="position: fixed; top: 112px; right: 20px; z-index: 50; width: 264px; max-width: calc(100vw - 40px); box-sizing: border-box; background: #FCF9F3; color: #2A1219; border-radius: 24px; box-shadow: 0 16px 48px rgba(42,18,25,.22); padding: 10px; font-family: 'DM Sans', 'Avenir Next', 'Segoe UI', sans-serif; font-size: 14px; line-height: 1.4">
 <button type="button" onClick="{{ togglePanel }}" aria-expanded="{{ panelOpen }}" style="width: 100%; height: 40px; padding: 0 8px 0 12px; background: none; border: 0; cursor: pointer; display: flex; align-items: center; justify-content: space-between; font-family: inherit; font-size: 13px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #4E1A2B">
 <span>Fonte dos títulos</span>
 <span style="width: 28px; height: 28px; border-radius: 50%; background: #E6DAC8; display: inline-flex; align-items: center; justify-content: center; font-size: 18px; letter-spacing: 0; line-height: 1">{{ panelSign }}</span>
@@ -66,40 +84,60 @@ a{color:inherit}a:hover{opacity:.85}
 <span style="display: flex; flex-direction: column; min-width: 0"><span style="font-size: 14px; font-weight: 600">{{ o.name }}</span><span style="font-size: 12px; color: {{ o.muted }}">{{ o.note }}</span></span>
 </button>
 </sc-for>
-<div style="padding: 8px 8px 4px; font-size: 12px; line-height: 1.45; color: #6B5559">Muda títulos, frases de destaque e perguntas. O logo segue em Epilogue e o texto corrido em DM Sans.</div>
+<div style="padding: 8px 8px 4px; font-size: 12px; line-height: 1.45; color: #6B5559">Vale para as quatro páginas. O logo segue em Epilogue e o texto corrido em DM Sans.</div>
 </div>
 </sc-if>
 </aside>
 
-<header style="position: relative; overflow: hidden; background: #4E1A2B; color: #F7F1E8">
-<div class="flutua" style="position: absolute; right: -120px; top: 420px; width: 360px; height: 360px; border-radius: 50%; background: #7A3044; animation: flutua-c 9s ease-in-out infinite alternate"></div>
-
-<nav style="position: relative; max-width: 1200px; margin: 0 auto; padding: 28px clamp(20px, 5vw, 48px); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 32px" aria-label="Principal">
-<a href="#" style="text-decoration: none; font-family: Epilogue, Arial, sans-serif; font-weight: 600; font-size: 24px; line-height: 1; letter-spacing: -0.03em; white-space: nowrap; padding-top: 8px">Mykelly Pel<span style="position: relative; display: inline-block">ı<span class="pingo p1" style="position: absolute; left: 50%; top: -0.07em; width: 0.3em; height: 0.3em; margin-left: -0.15em; border-radius: 50%; background: #F7F1E8"></span></span>gr<span style="position: relative; display: inline-block">ı<span class="pingo p2" style="position: absolute; left: 50%; top: -0.19em; width: 0.3em; height: 0.3em; margin-left: -0.15em; border-radius: 50%; background: #707A3E"></span></span>nel<span style="position: relative; display: inline-block">ı<span class="pingo p3" style="position: absolute; left: 50%; top: -0.31em; width: 0.3em; height: 0.3em; margin-left: -0.15em; border-radius: 50%; background: #F7F1E8"></span></span></a>
-<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 32px; font-size: 15px">
-<a href="#sobre" style="text-decoration: none">Sobre</a>
-<a href="#como-funciona" style="text-decoration: none">Como funciona</a>
-<a href="#perguntas" style="text-decoration: none">Perguntas</a>
-<a href="#" style="display: inline-flex; align-items: center; height: 44px; padding: 0 22px; background: #F7F1E8; color: #4E1A2B; font-weight: 600; text-decoration: none; border-radius: 999px" class="pill">Conversar com a My</a>
+<nav aria-label="Principal" style="position: relative; z-index: 5; background: #4E1A2B; color: #F7F1E8">
+<div style="max-width: 1200px; margin: 0 auto; padding-left: clamp(20px, 5vw, 48px); padding-right: clamp(20px, 5vw, 48px); padding-top: 26px; padding-bottom: 26px; display: flex; align-items: center; justify-content: space-between; gap: 16px 32px">
+<a href="#" onClick="{{ goHome }}" aria-label="Mykelly Peligrineli, página inicial" style="text-decoration: none"><span style="display: inline-block; font-family: Epilogue, Arial, sans-serif; font-weight: 600; font-size: 24px; line-height: 1; letter-spacing: -0.03em; white-space: nowrap; padding-top: 8px">Mykelly Pel<span style="position: relative; display: inline-block">ı<span class="pingo p1" style="position: absolute; left: 50%; top: -0.07em; width: 0.3em; height: 0.3em; margin-left: -0.15em; border-radius: 50%; background: #F7F1E8"></span></span>gr<span style="position: relative; display: inline-block">ı<span class="pingo p2" style="position: absolute; left: 50%; top: -0.19em; width: 0.3em; height: 0.3em; margin-left: -0.15em; border-radius: 50%; background: #707A3E"></span></span>nel<span style="position: relative; display: inline-block">ı<span class="pingo p3" style="position: absolute; left: 50%; top: -0.31em; width: 0.3em; height: 0.3em; margin-left: -0.15em; border-radius: 50%; background: #F7F1E8"></span></span></span></a>
+<div class="nav-links" style="display: flex; align-items: center; gap: 8px 34px; font-size: 15px">
+<sc-for list="{{ nav }}" as="n" hint-placeholder-count="4">
+<a href="#" class="nav-link" onClick="{{ n.go }}" aria-current="{{ n.current }}" style="position: relative; padding: 8px 0; text-decoration: none; opacity: {{ n.op }}">{{ n.label }}<span style="position: absolute; left: 50%; bottom: -6px; width: 7px; height: 7px; margin-left: -3.5px; border-radius: 50%; background: {{ n.dot }}"></span></a>
+</sc-for>
+<a href="#" class="pill" onClick="{{ goWhats }}" style="display: inline-flex; align-items: center; justify-content: center; height: 44px; padding: 0 22px; background: #F7F1E8; color: #4E1A2B; font-size: 16px; font-weight: 600; text-decoration: none; border-radius: 999px">Conversar com a My</a>
+</div>
+<button type="button" class="nav-menu" onClick="{{ toggleMenu }}" aria-label="Abrir menu" aria-expanded="{{ menuOpen }}" style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid #F7F1E8; background: none; color: #F7F1E8; align-items: center; justify-content: center; padding: 0; cursor: pointer"><svg width="18" height="14" viewBox="0 0 18 14" fill="none" aria-hidden="true"><path d="M1 1h16M1 7h16M1 13h16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg></button>
 </div>
 </nav>
 
-<div style="position: relative; max-width: 1200px; margin: 0 auto; padding: 40px clamp(20px, 5vw, 48px) 120px; display: flex; flex-wrap: wrap; align-items: center; gap: 56px">
+<sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+<div class="menu-cel" role="dialog" aria-label="Menu" style="position: fixed; inset: 0; z-index: 70; overflow: hidden; background: #4E1A2B; color: #F7F1E8; display: flex; flex-direction: column">
+<div class="flutua" style="position: absolute; right: -120px; bottom: 120px; width: 260px; height: 260px; border-radius: 50%; background: #7A3044; animation: flutua-c 9s ease-in-out infinite alternate"></div><div class="flutua" style="position: absolute; right: 40px; bottom: 330px; width: 64px; height: 64px; border-radius: 50%; background: #707A3E; animation: flutua-b 8s ease-in-out infinite alternate"></div>
+<div style="position: relative; padding: 20px; display: flex; align-items: center; justify-content: space-between">
+<span style="display: inline-block; font-family: Epilogue, Arial, sans-serif; font-weight: 600; font-size: 21px; line-height: 1; letter-spacing: -0.03em; white-space: nowrap; padding-top: 8px">Mykelly Pel<span style="position: relative; display: inline-block">ı<span style="position: absolute; left: 50%; top: -0.07em; width: 0.3em; height: 0.3em; margin-left: -0.15em; border-radius: 50%; background: #F7F1E8"></span></span>gr<span style="position: relative; display: inline-block">ı<span style="position: absolute; left: 50%; top: -0.19em; width: 0.3em; height: 0.3em; margin-left: -0.15em; border-radius: 50%; background: #707A3E"></span></span>nel<span style="position: relative; display: inline-block">ı<span style="position: absolute; left: 50%; top: -0.31em; width: 0.3em; height: 0.3em; margin-left: -0.15em; border-radius: 50%; background: #F7F1E8"></span></span></span>
+<button type="button" onClick="{{ toggleMenu }}" aria-label="Fechar menu" style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid #F7F1E8; background: none; color: #F7F1E8; display: inline-flex; align-items: center; justify-content: center; padding: 0; cursor: pointer"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 2l12 12M14 2L2 14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg></button>
+</div>
+<div style="position: relative; flex: 1; padding: 32px 20px 0; display: flex; flex-direction: column">
+<sc-for list="{{ nav }}" as="n" hint-placeholder-count="4">
+<a href="#" onClick="{{ n.go }}" aria-current="{{ n.current }}" style="display: flex; align-items: center; gap: 18px; padding: 16px 0; border-bottom: 1px solid #7A3044; text-decoration: none">
+<span style="width: 14px; height: 14px; border-radius: 50%; background: {{ n.mdot }}; flex-shrink: 0"></span>
+<span style="margin: 0; font-family: {{ fh }}; font-weight: {{ fw }}; font-size: calc(40px * {{ fs }}); line-height: calc(1.1 * {{ fl }}); letter-spacing: calc(-0.03em * {{ ft }}); opacity: {{ n.op }}">{{ n.label }}</span>
+</a>
+</sc-for>
+</div>
+<div style="position: relative; padding: 20px 20px 28px; display: flex; flex-direction: column; gap: 10px">
+<a href="#" class="pill" onClick="{{ goWhats }}" style="display: inline-flex; align-items: center; justify-content: center; height: 54px; padding: 0 32px; background: #F7F1E8; color: #4E1A2B; font-size: 16px; font-weight: 600; text-decoration: none; border-radius: 999px">Conversar com a My</a>
+<div style="font-size: 13px; color: #E6DAC8; text-align: center">Quem responde no WhatsApp sou eu, sem robô.</div>
+</div>
+</div>
+</sc-if>
+<sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+
+<header style="position: relative; overflow: hidden; background: #4E1A2B; color: #F7F1E8">
+<div class="flutua" style="position: absolute; right: -120px; top: 420px; width: 360px; height: 360px; border-radius: 50%; background: #7A3044; animation: flutua-c 9s ease-in-out infinite alternate"></div>
+<div style="position: relative; max-width: 1200px; margin: 0 auto; padding-left: clamp(20px, 5vw, 48px); padding-right: clamp(20px, 5vw, 48px); padding-top: 32px; padding-bottom: 120px; display: flex; flex-wrap: wrap; align-items: center; gap: 56px">
 <div style="flex: 1 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 28px">
 <div class="entra d1" style="font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #E6DAC8">Psicoterapia online para mulheres</div>
 <h1 class="entra d2" style="margin: 0; font-family: {{ fh }}; font-weight: {{ fw }}; font-size: calc(clamp(48px, 6.4vw, 88px) * {{ fs }}); line-height: calc(0.98 * {{ fl }}); letter-spacing: calc(-0.04em * {{ ft }}); text-wrap: balance">Você deu conta de tudo. <em style="font-style: italic; color: #E6DAC8">E de você?</em></h1>
 <p class="entra d3" style="margin: 0; font-size: 19px; line-height: 1.55; max-width: 520px">Sou Mykelly Peligrineli, psicóloga. Atendo mulheres que se perderam de si no meio do caminho e querem voltar ao centro da própria vida.</p>
-<div class="entra d4" style="display: flex; flex-wrap: wrap; align-items: center; gap: 16px 28px">
-<a href="#" style="display: inline-flex; align-items: center; height: 56px; padding: 0 32px; background: #F7F1E8; color: #4E1A2B; font-size: 16px; font-weight: 600; text-decoration: none; border-radius: 999px" class="pill">Conversar com a My</a>
-<a href="#como-funciona" style="font-size: 16px; font-weight: 600; text-underline-offset: 5px">Como funciona</a>
-</div>
+<div class="entra d4" style="display: flex; flex-wrap: wrap; align-items: center; gap: 16px 28px"><a href="#" class="pill" onClick="{{ goWhats }}" style="display: inline-flex; align-items: center; justify-content: center; height: 56px; padding: 0 32px; background: #F7F1E8; color: #4E1A2B; font-size: 16px; font-weight: 600; text-decoration: none; border-radius: 999px">Conversar com a My</a><a href="#" class="seta" onClick="{{ goTerapia }}" style="display: inline-flex; align-items: center; gap: 12px; font-size: 16px; font-weight: 600; text-decoration: none; color: #F7F1E8"><span>Conheça a terapia</span><span class="seta-ic" style="width: 36px; height: 36px; border-radius: 50%; background: #7A3044; color: #F7F1E8; display: inline-flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></span></a></div>
 <div class="entra d5" style="font-size: 14px; color: #E6DAC8">Quem responde no WhatsApp sou eu, sem robô.</div>
 </div>
 <div class="entra d3" style="flex: 1 1 420px; min-width: 0; display: flex; justify-content: center">
 <div class="px-foto" style="position: relative; width: 460px; max-width: 100%; aspect-ratio: 46 / 50">
-<div style="position: absolute; left: 6%; top: 4%; width: 84%; aspect-ratio: 1; border-radius: 50%; background: #CDBFAE; color: #2A1219; box-sizing: border-box; padding: 16%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; gap: 4px"><div style="font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase">Foto</div><div style="font-size: 13px; line-height: 1.4">Retrato da Mykelly, gesto ou tecido em movimento, roupa clara ou oliva</div></div>
-<div class="flutua" style="position: absolute; left: 0; top: 66%; width: 34%; aspect-ratio: 1; border-radius: 50%; background: #E6DAC8; animation: flutua-a 7s ease-in-out infinite alternate"></div>
-<div class="flutua" style="position: absolute; right: 0; top: 0; width: 22%; aspect-ratio: 1; border-radius: 50%; background: #707A3E; animation: flutua-b 8s ease-in-out infinite alternate"></div>
+<div style="position: absolute; left: 6%; top: 4%; width: 84%; aspect-ratio: 1; border-radius: 50%; background: #CDBFAE; color: #2A1219; box-sizing: border-box; padding: 16%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; gap: 4px"><div style="font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase">Foto</div><div style="font-size: 13px; line-height: 1.4">Retrato da Mykelly, gesto ou tecido em movimento, roupa clara ou oliva</div></div><div class="flutua" style="position: absolute; left: 0; top: 66%; width: 34%; aspect-ratio: 1; border-radius: 50%; background: #E6DAC8; animation: flutua-a 7s ease-in-out infinite alternate"></div><div class="flutua" style="position: absolute; right: 0; top: 0; width: 22%; aspect-ratio: 1; border-radius: 50%; background: #707A3E; animation: flutua-b 8s ease-in-out infinite alternate"></div>
 </div>
 </div>
 </div>
@@ -107,87 +145,211 @@ a{color:inherit}a:hover{opacity:.85}
 
 <section style="position: relative; overflow: hidden">
 <div class="px-a" style="position: absolute; right: -140px; top: 80px; width: 320px; height: 320px; border-radius: 50%; background: #E6DAC8"></div>
-<div style="position: relative; max-width: 1200px; margin: 0 auto; padding: 120px clamp(20px, 5vw, 48px); display: flex; flex-wrap: wrap; gap: 48px 80px">
-<div style="flex: 1 1 340px; min-width: 0">
-<h2 class="revela" style="margin: 0; font-family: {{ fh }}; font-weight: {{ fw }}; font-size: calc(clamp(36px, 4vw, 52px) * {{ fs }}); line-height: calc(1.04 * {{ fl }}); letter-spacing: calc(-0.035em * {{ ft }}); color: #4E1A2B; text-wrap: balance">Talvez você esteja aqui <em style="font-style: italic">porque…</em></h2>
-</div>
+<div style="position: relative; max-width: 1200px; margin: 0 auto; padding-left: clamp(20px, 5vw, 48px); padding-right: clamp(20px, 5vw, 48px); padding-top: 120px; padding-bottom: 120px; display: flex; flex-wrap: wrap; gap: 48px 80px">
+<div style="flex: 1 1 340px; min-width: 0"><h2 class="revela" style="margin: 0; font-family: {{ fh }}; font-weight: {{ fw }}; font-size: calc(clamp(36px, 4vw, 52px) * {{ fs }}); line-height: calc(1.04 * {{ fl }}); letter-spacing: calc(-0.035em * {{ ft }}); color: #4E1A2B; text-wrap: balance">Talvez você esteja aqui <em style="font-style: italic">porque…</em></h2></div>
 <div style="flex: 2 1 520px; min-width: 0; display: flex; flex-direction: column">
-<div class="linha revela" style="display: flex; align-items: center; gap: 20px; padding: 22px 0; border-top: 1px solid #DED2C4"><div class="ponto" style="width: 18px; height: 18px; border-radius: 50%; background: #4E1A2B; flex-shrink: 0"></div><div style="font-family: {{ fh }}; font-weight: {{ fw2 }}; font-size: calc(22px * {{ fs }}); line-height: calc(1.3 * {{ fl }}); letter-spacing: calc(-0.015em * {{ ft }})">Cuida de todo mundo e se coloca sempre por último.</div></div>
-<div class="linha revela" style="display: flex; align-items: center; gap: 20px; padding: 22px 0; border-top: 1px solid #DED2C4"><div class="ponto" style="width: 18px; height: 18px; border-radius: 50%; background: #707A3E; flex-shrink: 0"></div><div style="font-family: {{ fh }}; font-weight: {{ fw2 }}; font-size: calc(22px * {{ fs }}); line-height: calc(1.3 * {{ fl }}); letter-spacing: calc(-0.015em * {{ ft }})">Sente que a vida anda no piloto automático.</div></div>
-<div class="linha revela" style="display: flex; align-items: center; gap: 20px; padding: 22px 0; border-top: 1px solid #DED2C4"><div class="ponto" style="width: 18px; height: 18px; border-radius: 50%; background: #7A3044; flex-shrink: 0"></div><div style="font-family: {{ fh }}; font-weight: {{ fw2 }}; font-size: calc(22px * {{ fs }}); line-height: calc(1.3 * {{ fl }}); letter-spacing: calc(-0.015em * {{ ft }})">Não se reconhece mais nas próprias escolhas.</div></div>
-<div class="linha revela" style="display: flex; align-items: center; gap: 20px; padding: 22px 0; border-top: 1px solid #DED2C4"><div class="ponto" style="width: 18px; height: 18px; border-radius: 50%; background: #4E1A2B; flex-shrink: 0"></div><div style="font-family: {{ fh }}; font-weight: {{ fw2 }}; font-size: calc(22px * {{ fs }}); line-height: calc(1.3 * {{ fl }}); letter-spacing: calc(-0.015em * {{ ft }})">Os relacionamentos andam pesando mais do que deveriam.</div></div>
-<div class="linha revela" style="display: flex; align-items: center; gap: 20px; padding: 22px 0; border-top: 1px solid #DED2C4; border-bottom: 1px solid #DED2C4"><div class="ponto" style="width: 18px; height: 18px; border-radius: 50%; background: #707A3E; flex-shrink: 0"></div><div style="font-family: {{ fh }}; font-weight: {{ fw2 }}; font-size: calc(22px * {{ fs }}); line-height: calc(1.3 * {{ fl }}); letter-spacing: calc(-0.015em * {{ ft }})">A ansiedade virou companhia de todo dia.</div></div>
+<div class="linha revela" style="display: flex; align-items: center; gap: 20px; padding: 22px 0; border-top: 1px solid #DED2C4"><div class="ponto" style="width: 18px; height: 18px; border-radius: 50%; background: #4E1A2B; flex-shrink: 0"></div><div style="margin: 0; font-family: {{ fh }}; font-weight: {{ fw2 }}; font-size: calc(22px * {{ fs }}); line-height: calc(1.3 * {{ fl }}); letter-spacing: calc(-0.015em * {{ ft }})">Cuida de todo mundo e se coloca sempre por último.</div></div><div class="linha revela" style="display: flex; align-items: center; gap: 20px; padding: 22px 0; border-top: 1px solid #DED2C4"><div class="ponto" style="width: 18px; height: 18px; border-radius: 50%; background: #707A3E; flex-shrink: 0"></div><div style="margin: 0; font-family: {{ fh }}; font-weight: {{ fw2 }}; font-size: calc(22px * {{ fs }}); line-height: calc(1.3 * {{ fl }}); letter-spacing: calc(-0.015em * {{ ft }})">Sente que a vida anda no piloto automático.</div></div><div class="linha revela" style="display: flex; align-items: center; gap: 20px; padding: 22px 0; border-top: 1px solid #DED2C4"><div class="ponto" style="width: 18px; height: 18px; border-radius: 50%; background: #7A3044; flex-shrink: 0"></div><div style="margin: 0; font-family: {{ fh }}; font-weight: {{ fw2 }}; font-size: calc(22px * {{ fs }}); line-height: calc(1.3 * {{ fl }}); letter-spacing: calc(-0.015em * {{ ft }})">Não se reconhece mais nas próprias escolhas.</div></div><div class="linha revela" style="display: flex; align-items: center; gap: 20px; padding: 22px 0; border-top: 1px solid #DED2C4"><div class="ponto" style="width: 18px; height: 18px; border-radius: 50%; background: #4E1A2B; flex-shrink: 0"></div><div style="margin: 0; font-family: {{ fh }}; font-weight: {{ fw2 }}; font-size: calc(22px * {{ fs }}); line-height: calc(1.3 * {{ fl }}); letter-spacing: calc(-0.015em * {{ ft }})">Os relacionamentos andam pesando mais do que deveriam.</div></div><div class="linha revela" style="display: flex; align-items: center; gap: 20px; padding: 22px 0; border-top: 1px solid #DED2C4; border-bottom: 1px solid #DED2C4"><div class="ponto" style="width: 18px; height: 18px; border-radius: 50%; background: #707A3E; flex-shrink: 0"></div><div style="margin: 0; font-family: {{ fh }}; font-weight: {{ fw2 }}; font-size: calc(22px * {{ fs }}); line-height: calc(1.3 * {{ fl }}); letter-spacing: calc(-0.015em * {{ ft }})">A ansiedade virou companhia de todo dia.</div></div>
 <p class="revela" style="margin: 32px 0 0 0; font-size: 19px; line-height: 1.6; max-width: 560px">Se alguma dessas frases te descreveu, a terapia pode ser o lugar para voltar a olhar para você.</p>
 </div>
 </div>
 </section>
 
 <section style="background: #E6DAC8">
-<div style="max-width: 1200px; margin: 0 auto; padding: 120px clamp(20px, 5vw, 48px); display: flex; flex-direction: column; gap: 56px">
+<div style="max-width: 1200px; margin: 0 auto; padding-left: clamp(20px, 5vw, 48px); padding-right: clamp(20px, 5vw, 48px); padding-top: 120px; padding-bottom: 120px; display: flex; flex-direction: column; gap: 56px">
 <div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 24px 64px">
-<h2 class="revela" style="margin: 0; flex: 1 1 420px; font-family: {{ fh }}; font-weight: {{ fw }}; font-size: calc(clamp(36px, 4vw, 52px) * {{ fs }}); line-height: calc(1.04 * {{ fl }}); letter-spacing: calc(-0.035em * {{ ft }}); color: #4E1A2B">Acolhimento <em style="font-style: italic">com direção.</em></h2>
+<h2 class="revela" style="margin: 0; font-family: {{ fh }}; font-weight: {{ fw }}; font-size: calc(clamp(36px, 4vw, 52px) * {{ fs }}); line-height: calc(1.04 * {{ fl }}); letter-spacing: calc(-0.035em * {{ ft }}); color: #4E1A2B; flex: 1 1 420px">Acolhimento <em style="font-style: italic">com direção.</em></h2>
 <p style="margin: 0; flex: 1 1 420px; font-size: 18px; line-height: 1.6">Aqui você é ouvida sem julgamento. E também ouve, com clareza e cuidado, o que eu estou vendo. A terapia é uma conversa que te ajuda a sair do lugar.</p>
 </div>
 <div class="revela" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 24px">
-<div class="card" style="background: #F7F1E8; border-radius: 24px; padding: 36px 32px; display: flex; flex-direction: column; gap: 14px"><div style="width: 44px; height: 44px; border-radius: 50%; background: #4E1A2B"></div><h3 style="margin: 0; font-family: {{ fh }}; font-weight: {{ fw }}; font-size: calc(24px * {{ fs }}); letter-spacing: calc(-0.02em * {{ ft }}); color: #4E1A2B">Eu escuto</h3><p style="margin: 0">Você chega como está, com o que estiver pesando. Sem pressa e sem precisar ter as palavras certas.</p></div>
-<div class="card" style="background: #F7F1E8; border-radius: 24px; padding: 36px 32px; display: flex; flex-direction: column; gap: 14px"><div style="width: 44px; height: 44px; border-radius: 50%; background: #707A3E"></div><h3 style="margin: 0; font-family: {{ fh }}; font-weight: {{ fw }}; font-size: calc(24px * {{ fs }}); letter-spacing: calc(-0.02em * {{ ft }}); color: #4E1A2B">Eu digo o que vejo</h3><p style="margin: 0">Aponto padrões, faço perguntas e devolvo o que estou percebendo. Com respeito, mas sem rodeios.</p></div>
-<div class="card" style="background: #F7F1E8; border-radius: 24px; padding: 36px 32px; display: flex; flex-direction: column; gap: 14px"><div style="width: 44px; height: 44px; border-radius: 50%; background: #7A3044"></div><h3 style="margin: 0; font-family: {{ fh }}; font-weight: {{ fw }}; font-size: calc(24px * {{ fs }}); letter-spacing: calc(-0.02em * {{ ft }}); color: #4E1A2B">Você escolhe</h3><p style="margin: 0">Com mais clareza sobre o que sente e o que quer, as decisões voltam a ser suas.</p></div>
+<div class="card" style="background: #F7F1E8; border-radius: 24px; padding: 36px 32px; display: flex; flex-direction: column; gap: 14px"><div style="width: 44px; height: 44px; border-radius: 50%; background: #4E1A2B"></div><h3 style="margin: 0; font-family: {{ fh }}; font-weight: {{ fw }}; font-size: calc(24px * {{ fs }}); line-height: calc(1.2 * {{ fl }}); letter-spacing: calc(-0.02em * {{ ft }}); color: #4E1A2B">Eu escuto</h3><p style="margin: 0">Você chega como está, com o que estiver pesando. Sem pressa e sem precisar ter as palavras certas.</p></div><div class="card" style="background: #F7F1E8; border-radius: 24px; padding: 36px 32px; display: flex; flex-direction: column; gap: 14px"><div style="width: 44px; height: 44px; border-radius: 50%; background: #707A3E"></div><h3 style="margin: 0; font-family: {{ fh }}; font-weight: {{ fw }}; font-size: calc(24px * {{ fs }}); line-height: calc(1.2 * {{ fl }}); letter-spacing: calc(-0.02em * {{ ft }}); color: #4E1A2B">Eu digo o que vejo</h3><p style="margin: 0">Aponto padrões, faço perguntas e devolvo o que estou percebendo. Com respeito, mas sem rodeios.</p></div><div class="card" style="background: #F7F1E8; border-radius: 24px; padding: 36px 32px; display: flex; flex-direction: column; gap: 14px"><div style="width: 44px; height: 44px; border-radius: 50%; background: #7A3044"></div><h3 style="margin: 0; font-family: {{ fh }}; font-weight: {{ fw }}; font-size: calc(24px * {{ fs }}); line-height: calc(1.2 * {{ fl }}); letter-spacing: calc(-0.02em * {{ ft }}); color: #4E1A2B">Você escolhe</h3><p style="margin: 0">Com mais clareza sobre o que sente e o que quer, as decisões voltam a ser suas.</p></div>
 </div>
-<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 20px 28px; padding-top: 8px">
-<div style="display: flex; flex-direction: column; align-items: center; gap: 4px" aria-hidden="true"><div style="width: 16px; height: 16px; border-radius: 50%; border: 2px solid #4E1A2B; box-sizing: border-box"></div><div class="respira" style="width: 16px; height: 16px; border-radius: 50%; background: #707A3E"></div><div style="width: 16px; height: 16px; border-radius: 50%; border: 2px solid #4E1A2B; box-sizing: border-box"></div></div>
-<p style="margin: 0; flex: 1 1 520px; font-size: 16px; line-height: 1.6; color: #2A1219">Trabalho com a <strong>Análise Transacional</strong>, uma abordagem que ajuda a fortalecer o seu <strong>Adulto</strong>: a parte de você que olha para a realidade e escolhe, em vez de só reagir.</p>
-</div>
+<div><a href="#" class="seta" onClick="{{ goTerapia }}" style="display: inline-flex; align-items: center; gap: 12px; font-size: 16px; font-weight: 600; text-decoration: none; color: #4E1A2B"><span>Como é a terapia comigo</span><span class="seta-ic" style="width: 36px; height: 36px; border-radius: 50%; background: #4E1A2B; color: #F7F1E8; display: inline-flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></span></a></div>
 </div>
 </section>
 
-<section id="sobre" style="position: relative; overflow: hidden">
-<div style="max-width: 1200px; margin: 0 auto; padding: 120px clamp(20px, 5vw, 48px); display: flex; flex-wrap: wrap; align-items: center; gap: 56px 96px">
-<div class="revela" style="flex: 1 1 360px; min-width: 0; display: flex; justify-content: center">
-<div style="position: relative; width: 400px; max-width: 100%; aspect-ratio: 40 / 54">
-<div style="position: absolute; inset: 0; border-radius: 999px; background: #CDBFAE; color: #2A1219; box-sizing: border-box; padding: 20%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; gap: 4px"><div style="font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase">Foto</div><div style="font-size: 13px; line-height: 1.4">Retrato de meio corpo, olhar direto, luz natural, fundo claro</div></div>
-<div class="px-b" style="position: absolute; right: -8%; bottom: 8%; width: 30%; aspect-ratio: 1; border-radius: 50%; background: #707A3E; border: 8px solid #F7F1E8"></div>
+<section style="position: relative; overflow: hidden">
+<div style="max-width: 1200px; margin: 0 auto; padding-left: clamp(20px, 5vw, 48px); padding-right: clamp(20px, 5vw, 48px); padding-top: 120px; padding-bottom: 120px; display: flex; flex-wrap: wrap; align-items: center; gap: 56px 96px">
+<div class="revela" style="flex: 1 1 340px; min-width: 0; display: flex; justify-content: center">
+<div style="position: relative; width: 360px; max-width: 100%; aspect-ratio: 40 / 54">
+<div style="position: absolute; inset: 0; border-radius: 999px; background: #CDBFAE; color: #2A1219; box-sizing: border-box; padding: 16%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; gap: 4px"><div style="font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase">Foto</div><div style="font-size: 13px; line-height: 1.4">Retrato de meio corpo, olhar direto, luz natural, fundo claro</div></div><div class="px-b" style="position: absolute; right: -8%; bottom: 8%; width: 30%; aspect-ratio: 1; border-radius: 50%; background: #707A3E; border: 8px solid #F7F1E8"></div>
 </div>
 </div>
-<div style="flex: 1 1 460px; min-width: 0; display: flex; flex-direction: column; gap: 24px">
-<div style="font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #7A3044">Sobre</div>
+<div style="flex: 1 1 460px; min-width: 0; display: flex; flex-direction: column; gap: 24px; align-items: flex-start">
+<div style="font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #7A3044">Quem sou</div>
 <h2 class="revela" style="margin: 0; font-family: {{ fh }}; font-weight: {{ fw }}; font-size: calc(clamp(36px, 4vw, 52px) * {{ fs }}); line-height: calc(1.04 * {{ fl }}); letter-spacing: calc(-0.035em * {{ ft }}); color: #4E1A2B">Oi, eu sou a Mykelly. <em style="font-style: italic">Pode me chamar de My.</em></h2>
 <p style="margin: 0">Sou psicóloga e sexóloga e atendo exclusivamente mulheres adultas, online. Antes da clínica, trabalhei anos com pessoas em Recursos Humanos, e foi ali que entendi o quanto a gente se deixa de lado para dar conta de tudo.</p>
-<p style="margin: 0">Hoje meu trabalho é ajudar mulheres a se reconhecerem de novo e a fazerem escolhas mais conscientes, na vida pessoal, afetiva, sexual e profissional.</p>
-<div style="border-left: 0; padding: 8px 0 0 0; font-family: {{ fh }}; font-style: italic; font-weight: {{ fw2 }}; font-size: calc(24px * {{ fs }}); line-height: calc(1.3 * {{ fl }}); letter-spacing: calc(-0.02em * {{ ft }}); color: #7A3044">“Cuidar de si não é o que sobra no fim do dia.”</div>
-<div style="display: flex; flex-wrap: wrap; gap: 10px">
-<div style="display: inline-flex; align-items: center; height: 36px; padding: 0 16px; border: 1px solid #4E1A2B; border-radius: 999px; font-size: 14px; color: #4E1A2B">Psicóloga · CRP [NÚMERO]</div>
-<div style="display: inline-flex; align-items: center; height: 36px; padding: 0 16px; border: 1px solid #4E1A2B; border-radius: 999px; font-size: 14px; color: #4E1A2B">Análise Transacional</div>
-<div style="display: inline-flex; align-items: center; height: 36px; padding: 0 16px; border: 1px solid #4E1A2B; border-radius: 999px; font-size: 14px; color: #4E1A2B">Sexóloga</div>
-<div style="display: inline-flex; align-items: center; height: 36px; padding: 0 16px; border: 1px solid #4E1A2B; border-radius: 999px; font-size: 14px; color: #4E1A2B">Atendimento online</div>
-</div>
+<div style="display: flex; flex-wrap: wrap; gap: 10px"><div style="display: inline-flex; align-items: center; height: 36px; padding: 0 16px; border: 1px solid #4E1A2B; border-radius: 999px; font-size: 14px; color: #4E1A2B">Psicóloga · CRP [NÚMERO]</div><div style="display: inline-flex; align-items: center; height: 36px; padding: 0 16px; border: 1px solid #4E1A2B; border-radius: 999px; font-size: 14px; color: #4E1A2B">Análise Transacional</div><div style="display: inline-flex; align-items: center; height: 36px; padding: 0 16px; border: 1px solid #4E1A2B; border-radius: 999px; font-size: 14px; color: #4E1A2B">Sexóloga</div></div>
+<a href="#" class="seta" onClick="{{ goSobre }}" style="display: inline-flex; align-items: center; gap: 12px; font-size: 16px; font-weight: 600; text-decoration: none; color: #4E1A2B"><span>Conheça minha história</span><span class="seta-ic" style="width: 36px; height: 36px; border-radius: 50%; background: #4E1A2B; color: #F7F1E8; display: inline-flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></span></a>
 </div>
 </div>
 </section>
 
-<section id="como-funciona" style="position: relative; overflow: hidden; background: #4E1A2B; color: #F7F1E8">
+<section style="position: relative; overflow: hidden; background: #4E1A2B; color: #F7F1E8">
+<div class="px-a" style="position: absolute; left: -90px; top: -90px; width: 260px; height: 260px; border-radius: 50%; background: #7A3044"></div><div class="px-b so-desk" style="position: absolute; right: -70px; top: 34%; width: 200px; height: 200px; border-radius: 50%; background: #E6DAC8"></div><div class="px-a so-desk" style="position: absolute; right: 150px; top: 58%; width: 56px; height: 56px; border-radius: 50%; background: #707A3E"></div>
+<div style="position: relative; max-width: 1200px; margin: 0 auto; padding-left: clamp(20px, 5vw, 48px); padding-right: clamp(20px, 5vw, 48px); padding-top: 140px; padding-bottom: 140px">
+<blockquote class="revela" style="margin: 0; max-width: 900px; margin: 0; font-family: {{ fh }}; font-weight: {{ fw }}; font-size: calc(clamp(38px, 5vw, 72px) * {{ fs }}); line-height: calc(1.05 * {{ fl }}); letter-spacing: calc(-0.035em * {{ ft }}); font-style: normal">“Cuidar de si não é o que sobra <em style="font-style: italic; color: #E6DAC8">no fim do dia.</em>”</blockquote>
+<div style="margin-top: 32px; font-size: 15px; color: #E6DAC8">Mykelly Peligrineli</div>
+</div>
+</section>
+
+<section style="position: relative; overflow: hidden; background: #E6DAC8">
+<div class="px-b" style="position: absolute; inset: 0; pointer-events: none"><div class="flutua" style="position: absolute; right: 8%; top: -60px; width: 180px; height: 180px; border-radius: 50%; background: #4E1A2B; animation: flutua-a 8s ease-in-out infinite alternate"></div><div class="flutua so-desk" style="position: absolute; right: 2%; top: 90px; width: 90px; height: 90px; border-radius: 50%; background: #707A3E; animation: flutua-b 7s ease-in-out infinite alternate"></div></div>
+<div style="position: relative; max-width: 1200px; margin: 0 auto; padding-left: clamp(20px, 5vw, 48px); padding-right: clamp(20px, 5vw, 48px); padding-top: 120px; padding-bottom: 120px; display: flex; flex-direction: column; gap: 28px; align-items: flex-start">
+<h2 class="revela" style="margin: 0; font-family: {{ fh }}; font-weight: {{ fw }}; font-size: calc(clamp(40px, 5vw, 68px) * {{ fs }}); line-height: calc(1 * {{ fl }}); letter-spacing: calc(-0.04em * {{ ft }}); color: #4E1A2B; max-width: 760px">Que tal começar <em style="font-style: italic">por uma conversa?</em></h2>
+<p style="margin: 0; max-width: 560px; font-size: 19px; line-height: 1.55">Me chama no WhatsApp. Eu respondo pessoalmente e te conto como funciona, os horários e os valores.</p>
+<a href="#" class="pill" onClick="{{ goWhats }}" style="display: inline-flex; align-items: center; justify-content: center; height: 56px; padding: 0 32px; background: #4E1A2B; color: #F7F1E8; font-size: 16px; font-weight: 600; text-decoration: none; border-radius: 999px">Conversar com a My</a>
+</div>
+</section>
+
+</sc-if>
+<sc-if value="{{ isSobre }}" hint-placeholder-val="{{ false }}">
+
+<header style="position: relative; overflow: hidden; background: #4E1A2B; color: #F7F1E8">
+<div class="flutua" style="position: absolute; left: -140px; bottom: -160px; width: 340px; height: 340px; border-radius: 50%; background: #7A3044; animation: flutua-c 9s ease-in-out infinite alternate"></div>
+<div style="position: relative; max-width: 1200px; margin: 0 auto; padding-left: clamp(20px, 5vw, 48px); padding-right: clamp(20px, 5vw, 48px); padding-top: 32px; padding-bottom: 120px; display: flex; flex-wrap: wrap; align-items: center; gap: 56px">
+<div style="flex: 1 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 28px">
+<div class="entra d1" style="font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #E6DAC8">Quem sou</div>
+<h1 class="entra d2" style="margin: 0; font-family: {{ fh }}; font-weight: {{ fw }}; font-size: calc(clamp(44px, 6vw, 84px) * {{ fs }}); line-height: calc(0.98 * {{ fl }}); letter-spacing: calc(-0.04em * {{ ft }}); text-wrap: balance">Oi, eu sou a Mykelly. <em style="font-style: italic; color: #E6DAC8">Pode me chamar de My.</em></h1>
+<p class="entra d3" style="margin: 0; font-size: 19px; line-height: 1.55; max-width: 540px">Sou psicóloga e sexóloga. Atendo mulheres adultas, online, com uma escuta que acolhe e uma postura que não tem medo de dizer o que vê.</p>
+<div class="entra d4" style="display: flex; flex-wrap: wrap; gap: 10px"><div style="display: inline-flex; align-items: center; height: 36px; padding: 0 16px; border: 1px solid #F7F1E8; border-radius: 999px; font-size: 14px; color: #F7F1E8">Psicóloga · CRP [NÚMERO]</div><div style="display: inline-flex; align-items: center; height: 36px; padding: 0 16px; border: 1px solid #F7F1E8; border-radius: 999px; font-size: 14px; color: #F7F1E8">Análise Transacional</div><div style="display: inline-flex; align-items: center; height: 36px; padding: 0 16px; border: 1px solid #F7F1E8; border-radius: 999px; font-size: 14px; color: #F7F1E8">Sexóloga</div><div style="display: inline-flex; align-items: center; height: 36px; padding: 0 16px; border: 1px solid #F7F1E8; border-radius: 999px; font-size: 14px; color: #F7F1E8">Atendimento online</div></div>
+</div>
+<div class="entra d3" style="flex: 1 1 400px; min-width: 0; display: flex; justify-content: center"><div class="px-foto" style="position: relative; width: 420px; max-width: 100%; aspect-ratio: 42 / 52"><div style="position: absolute; left: 10%; top: 0; width: 76%; height: 100%; border-radius: 999px; background: #CDBFAE; color: #2A1219; box-sizing: border-box; padding: 16%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; gap: 4px"><div style="font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase">Foto</div><div style="font-size: 13px; line-height: 1.4">Retrato vertical, meio corpo, sorriso leve, roupa clara</div></div><div class="flutua" style="position: absolute; left: 0; bottom: 6%; width: 30%; aspect-ratio: 1; border-radius: 50%; background: #707A3E; animation: flutua-a 7s ease-in-out infinite alternate"></div><div class="flutua" style="position: absolute; right: 0; top: 10%; width: 18%; aspect-ratio: 1; border-radius: 50%; background: #E6DAC8; animation: flutua-b 8s ease-in-out infinite alternate"></div></div></div>
+</div>
+</header>
+
+<section style="position: relative; overflow: hidden">
+<div style="max-width: 1200px; margin: 0 auto; padding-left: clamp(20px, 5vw, 48px); padding-right: clamp(20px, 5vw, 48px); padding-top: 120px; padding-bottom: 120px; display: flex; flex-direction: column; gap: 64px">
+<div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 24px 64px">
+<div style="flex: 1 1 460px; display: flex; flex-direction: column; gap: 20px"><div style="font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #7A3044">Minha história</div>
+<h2 class="revela" style="margin: 0; font-family: {{ fh }}; font-weight: {{ fw }}; font-size: calc(clamp(36px, 4vw, 52px) * {{ fs }}); line-height: calc(1.04 * {{ fl }}); letter-spacing: calc(-0.035em * {{ ft }}); color: #4E1A2B; text-wrap: balance">Antes da clínica, <em style="font-style: italic">eu já trabalhava com gente.</em></h2></div>
+<p style="margin: 0; flex: 1 1 380px; font-size: 18px; line-height: 1.6">Três tempos me trouxeram até aqui. Cada um deixou alguma coisa no jeito como eu escuto hoje.</p>
+</div>
+<div style="position: relative; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 48px 40px">
+<div class="so-desk" aria-hidden="true" style="position: absolute; left: 24px; right: 24px; top: 24px; height: 1px; background: #DED2C4"></div>
+<div class="revela" style="position: relative; display: flex; flex-direction: column; gap: 14px"><div style="display: flex; align-items: center; gap: 14px"><div class="ponto" style="width: 48px; height: 48px; border-radius: 50%; background: #4E1A2B; flex-shrink: 0"></div><div style="position: relative; padding-right: 14px; background: #F7F1E8; font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #7A3044">Antes</div></div><h3 style="margin: 0; font-family: {{ fh }}; font-weight: {{ fw }}; font-size: calc(26px * {{ fs }}); line-height: calc(1.15 * {{ fl }}); letter-spacing: calc(-0.02em * {{ ft }}); color: #4E1A2B">Anos em Recursos Humanos</h3><p style="margin: 0">Trabalhei com pessoas dentro das empresas e vi de perto o quanto a gente se deixa de lado para dar conta de tudo.</p><div style="align-self: flex-start"><div style="display: inline-flex; align-items: center; height: 36px; padding: 0 16px; border: 1px solid #6B5559; border-radius: 999px; font-size: 14px; color: #6B5559">[PERÍODO]</div></div></div><div class="revela" style="position: relative; display: flex; flex-direction: column; gap: 14px"><div style="display: flex; align-items: center; gap: 14px"><div class="ponto" style="width: 48px; height: 48px; border-radius: 50%; background: #707A3E; flex-shrink: 0"></div><div style="position: relative; padding-right: 14px; background: #F7F1E8; font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #7A3044">A virada</div></div><h3 style="margin: 0; font-family: {{ fh }}; font-weight: {{ fw }}; font-size: calc(26px * {{ fs }}); line-height: calc(1.15 * {{ fl }}); letter-spacing: calc(-0.02em * {{ ft }}); color: #4E1A2B">A escolha pela psicologia</h3><p style="margin: 0">Decidi fazer da escuta o centro do meu trabalho. Me formei psicóloga e fui buscar uma abordagem que unisse acolhimento e direção.</p><div style="align-self: flex-start"><div style="display: inline-flex; align-items: center; height: 36px; padding: 0 16px; border: 1px solid #6B5559; border-radius: 999px; font-size: 14px; color: #6B5559">[ANO]</div></div></div><div class="revela" style="position: relative; display: flex; flex-direction: column; gap: 14px"><div style="display: flex; align-items: center; gap: 14px"><div class="ponto" style="width: 48px; height: 48px; border-radius: 50%; background: #7A3044; flex-shrink: 0"></div><div style="position: relative; padding-right: 14px; background: #F7F1E8; font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #7A3044">Hoje</div></div><h3 style="margin: 0; font-family: {{ fh }}; font-weight: {{ fw }}; font-size: calc(26px * {{ fs }}); line-height: calc(1.15 * {{ fl }}); letter-spacing: calc(-0.02em * {{ ft }}); color: #4E1A2B">Clínica para mulheres</h3><p style="margin: 0">Atendo mulheres adultas, online, que querem voltar a se reconhecer e fazer escolhas mais conscientes na vida pessoal, afetiva, sexual e profissional.</p></div>
+</div>
+</div>
+</section>
+
+<section style="position: relative; overflow: hidden; background: #E6DAC8">
+<div class="px-a" style="position: absolute; right: -120px; top: -120px; width: 300px; height: 300px; border-radius: 50%; background: #F7F1E8"></div>
+<div style="position: relative; max-width: 1200px; margin: 0 auto; padding-left: clamp(20px, 5vw, 48px); padding-right: clamp(20px, 5vw, 48px); padding-top: 120px; padding-bottom: 120px; display: flex; flex-wrap: wrap; align-items: center; gap: 64px 96px">
+<div style="flex: 1 1 460px; min-width: 0; display: flex; flex-direction: column; gap: 24px">
+<div style="font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #7A3044">Como eu trabalho</div>
+<h2 class="revela" style="margin: 0; font-family: {{ fh }}; font-weight: {{ fw }}; font-size: calc(clamp(36px, 4vw, 52px) * {{ fs }}); line-height: calc(1.04 * {{ fl }}); letter-spacing: calc(-0.035em * {{ ft }}); color: #4E1A2B; text-wrap: balance">Análise Transacional, <em style="font-style: italic">em linguagem simples.</em></h2>
+<p style="margin: 0; font-size: 18px; line-height: 1.6">A Análise Transacional olha para três partes que convivem dentro de nós. Na terapia, a gente entende como cada uma aparece na sua vida e fortalece o <strong>Adulto</strong>: a parte que olha para a realidade e escolhe, em vez de só reagir.</p>
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; padding: 20px 24px; background: #F7F1E8; border-radius: 24px">
+<div style="flex-shrink: 0"><span style="display: inline-block; font-family: Epilogue, Arial, sans-serif; font-weight: 600; font-size: 22px; line-height: 1; letter-spacing: -0.03em; white-space: nowrap; padding-top: 8px">Mykelly Pel<span style="position: relative; display: inline-block">ı<span style="position: absolute; left: 50%; top: -0.07em; width: 0.3em; height: 0.3em; margin-left: -0.15em; border-radius: 50%; background: #4E1A2B"></span></span>gr<span style="position: relative; display: inline-block">ı<span style="position: absolute; left: 50%; top: -0.19em; width: 0.3em; height: 0.3em; margin-left: -0.15em; border-radius: 50%; background: #707A3E"></span></span>nel<span style="position: relative; display: inline-block">ı<span style="position: absolute; left: 50%; top: -0.31em; width: 0.3em; height: 0.3em; margin-left: -0.15em; border-radius: 50%; background: #4E1A2B"></span></span></span></div>
+<div style="flex: 1 1 220px; font-size: 15px; line-height: 1.5">Os três pingos do meu nome vêm daqui. O do meio, em verde, é o Adulto.</div>
+</div>
+</div>
+<div class="revela" style="flex: 1 1 380px; min-width: 0; display: flex; flex-direction: column; gap: 28px">
+<div style="display: flex; align-items: center; gap: 22px"><div class="respira" style="width: 72px; height: 72px; border-radius: 50%; border: 3px solid #4E1A2B; box-sizing: border-box; flex-shrink: 0"></div><div style="display: flex; flex-direction: column; gap: 2px"><div style="margin: 0; font-family: {{ fh }}; font-weight: {{ fw }}; font-size: calc(24px * {{ fs }}); line-height: calc(1.2 * {{ fl }}); letter-spacing: calc(-0.02em * {{ ft }}); color: #4E1A2B">Pai</div><div style="font-size: 16px; line-height: 1.5">As regras, cobranças e cuidados que a gente aprendeu.</div></div></div><div style="display: flex; align-items: center; gap: 22px"><div class="respira-2" style="width: 72px; height: 72px; border-radius: 50%; background: #707A3E; flex-shrink: 0"></div><div style="display: flex; flex-direction: column; gap: 2px"><div style="margin: 0; font-family: {{ fh }}; font-weight: {{ fw }}; font-size: calc(24px * {{ fs }}); line-height: calc(1.2 * {{ fl }}); letter-spacing: calc(-0.02em * {{ ft }}); color: #4E1A2B">Adulto</div><div style="font-size: 16px; line-height: 1.5">A parte que olha o agora, pondera e decide.</div></div></div><div style="display: flex; align-items: center; gap: 22px"><div class="respira-3" style="width: 72px; height: 72px; border-radius: 50%; border: 3px solid #4E1A2B; box-sizing: border-box; flex-shrink: 0"></div><div style="display: flex; flex-direction: column; gap: 2px"><div style="margin: 0; font-family: {{ fh }}; font-weight: {{ fw }}; font-size: calc(24px * {{ fs }}); line-height: calc(1.2 * {{ fl }}); letter-spacing: calc(-0.02em * {{ ft }}); color: #4E1A2B">Criança</div><div style="font-size: 16px; line-height: 1.5">Sentimentos, desejos e espontaneidade.</div></div></div>
+</div>
+</div>
+</section>
+
+<section style="position: relative; overflow: hidden">
+<div style="max-width: 1200px; margin: 0 auto; padding-left: clamp(20px, 5vw, 48px); padding-right: clamp(20px, 5vw, 48px); padding-top: 120px; padding-bottom: 120px; display: flex; flex-wrap: wrap; gap: 56px 96px">
+<div style="flex: 2 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 32px">
+<h2 class="revela" style="margin: 0; font-family: {{ fh }}; font-weight: {{ fw }}; font-size: calc(clamp(36px, 4vw, 52px) * {{ fs }}); line-height: calc(1.04 * {{ fl }}); letter-spacing: calc(-0.035em * {{ ft }}); color: #4E1A2B">Formação</h2>
+<div style="display: flex; flex-direction: column; border-bottom: 1px solid #DED2C4">
+<div class="linha revela" style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 24px; padding: 22px 0; border-top: 1px solid #DED2C4"><div class="ponto" style="width: 14px; height: 14px; border-radius: 50%; background: #4E1A2B; flex-shrink: 0; align-self: center"></div><div style="flex: 1 1 220px; margin: 0; font-family: {{ fh }}; font-weight: {{ fw2 }}; font-size: calc(22px * {{ fs }}); line-height: calc(1.3 * {{ fl }}); letter-spacing: calc(-0.015em * {{ ft }}); color: #2A1219">Psicologia</div><div style="flex: 1 1 260px; color: #6B5559">[INSTITUIÇÃO] · CRP [NÚMERO]</div></div><div class="linha revela" style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 24px; padding: 22px 0; border-top: 1px solid #DED2C4"><div class="ponto" style="width: 14px; height: 14px; border-radius: 50%; background: #707A3E; flex-shrink: 0; align-self: center"></div><div style="flex: 1 1 220px; margin: 0; font-family: {{ fh }}; font-weight: {{ fw2 }}; font-size: calc(22px * {{ fs }}); line-height: calc(1.3 * {{ fl }}); letter-spacing: calc(-0.015em * {{ ft }}); color: #2A1219">Análise Transacional</div><div style="flex: 1 1 260px; color: #6B5559">[FORMAÇÃO E INSTITUIÇÃO]</div></div><div class="linha revela" style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 24px; padding: 22px 0; border-top: 1px solid #DED2C4"><div class="ponto" style="width: 14px; height: 14px; border-radius: 50%; background: #7A3044; flex-shrink: 0; align-self: center"></div><div style="flex: 1 1 220px; margin: 0; font-family: {{ fh }}; font-weight: {{ fw2 }}; font-size: calc(22px * {{ fs }}); line-height: calc(1.3 * {{ fl }}); letter-spacing: calc(-0.015em * {{ ft }}); color: #2A1219">Sexologia</div><div style="flex: 1 1 260px; color: #6B5559">[FORMAÇÃO E INSTITUIÇÃO]</div></div><div class="linha revela" style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 24px; padding: 22px 0; border-top: 1px solid #DED2C4"><div class="ponto" style="width: 14px; height: 14px; border-radius: 50%; background: #6B5559; flex-shrink: 0; align-self: center"></div><div style="flex: 1 1 220px; margin: 0; font-family: {{ fh }}; font-weight: {{ fw2 }}; font-size: calc(22px * {{ fs }}); line-height: calc(1.3 * {{ fl }}); letter-spacing: calc(-0.015em * {{ ft }}); color: #2A1219">Recursos Humanos</div><div style="flex: 1 1 260px; color: #6B5559">[ÁREA OU PERÍODO, OPCIONAL]</div></div>
+</div>
+</div>
+<div style="flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; justify-content: center; gap: 20px">
+<div class="revela" style="margin: 0; font-family: {{ fh }}; font-weight: {{ fw2 }}; font-size: calc(clamp(26px, 2.6vw, 32px) * {{ fs }}); line-height: calc(1.25 * {{ fl }}); letter-spacing: calc(-0.02em * {{ ft }}); color: #7A3044; font-style: italic">“Cuidar de si não é o que sobra no fim do dia.”</div>
+<a href="#" class="seta" onClick="{{ goTerapia }}" style="display: inline-flex; align-items: center; gap: 12px; font-size: 16px; font-weight: 600; text-decoration: none; color: #4E1A2B"><span>Como é a terapia comigo</span><span class="seta-ic" style="width: 36px; height: 36px; border-radius: 50%; background: #4E1A2B; color: #F7F1E8; display: inline-flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></span></a>
+</div>
+</div>
+</section>
+
+<section style="position: relative; overflow: hidden; background: #E6DAC8">
+<div class="px-b" style="position: absolute; inset: 0; pointer-events: none"><div class="flutua" style="position: absolute; right: 8%; top: -60px; width: 180px; height: 180px; border-radius: 50%; background: #4E1A2B; animation: flutua-a 8s ease-in-out infinite alternate"></div><div class="flutua so-desk" style="position: absolute; right: 2%; top: 90px; width: 90px; height: 90px; border-radius: 50%; background: #707A3E; animation: flutua-b 7s ease-in-out infinite alternate"></div></div>
+<div style="position: relative; max-width: 1200px; margin: 0 auto; padding-left: clamp(20px, 5vw, 48px); padding-right: clamp(20px, 5vw, 48px); padding-top: 120px; padding-bottom: 120px; display: flex; flex-direction: column; gap: 28px; align-items: flex-start">
+<h2 class="revela" style="margin: 0; font-family: {{ fh }}; font-weight: {{ fw }}; font-size: calc(clamp(40px, 5vw, 68px) * {{ fs }}); line-height: calc(1 * {{ fl }}); letter-spacing: calc(-0.04em * {{ ft }}); color: #4E1A2B; max-width: 760px">Quer conversar <em style="font-style: italic">comigo?</em></h2>
+<p style="margin: 0; max-width: 560px; font-size: 19px; line-height: 1.55">Me chama no WhatsApp. Eu respondo pessoalmente e te conto como funciona, os horários e os valores.</p>
+<a href="#" class="pill" onClick="{{ goWhats }}" style="display: inline-flex; align-items: center; justify-content: center; height: 56px; padding: 0 32px; background: #4E1A2B; color: #F7F1E8; font-size: 16px; font-weight: 600; text-decoration: none; border-radius: 999px">Conversar com a My</a>
+</div>
+</section>
+
+</sc-if>
+<sc-if value="{{ isTerapia }}" hint-placeholder-val="{{ false }}">
+
+<header style="position: relative; overflow: hidden; background: #4E1A2B; color: #F7F1E8">
+
+<div style="position: relative; max-width: 1200px; margin: 0 auto; padding-left: clamp(20px, 5vw, 48px); padding-right: clamp(20px, 5vw, 48px); padding-top: 32px; padding-bottom: 120px; display: flex; flex-wrap: wrap; align-items: center; gap: 56px">
+<div style="flex: 1 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 28px">
+<div class="entra d1" style="font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #E6DAC8">A terapia</div>
+<h1 class="entra d2" style="margin: 0; font-family: {{ fh }}; font-weight: {{ fw }}; font-size: calc(clamp(44px, 6vw, 84px) * {{ fs }}); line-height: calc(0.98 * {{ fl }}); letter-spacing: calc(-0.04em * {{ ft }}); text-wrap: balance">Um espaço para voltar <em style="font-style: italic; color: #E6DAC8">a olhar para você.</em></h1>
+<p class="entra d3" style="margin: 0; font-size: 19px; line-height: 1.55; max-width: 540px">Psicoterapia online para mulheres adultas, com escuta acolhedora e direção clara. No seu ritmo, sem fórmula pronta.</p>
+<div class="entra d4" style="display: flex; flex-wrap: wrap; align-items: center; gap: 16px 28px"><a href="#" class="pill" onClick="{{ goWhats }}" style="display: inline-flex; align-items: center; justify-content: center; height: 56px; padding: 0 32px; background: #F7F1E8; color: #4E1A2B; font-size: 16px; font-weight: 600; text-decoration: none; border-radius: 999px">Conversar com a My</a></div>
+</div>
+<div class="entra d3" style="flex: 1 1 400px; min-width: 0; display: flex; justify-content: center"><div class="px-foto" style="position: relative; width: 440px; max-width: 100%; aspect-ratio: 1"><div class="flutua" style="position: absolute; left: 0; top: 12%; width: 62%; aspect-ratio: 1; border-radius: 50%; background: #7A3044; animation: flutua-c 9s ease-in-out infinite alternate"></div><div class="flutua" style="position: absolute; right: 4%; top: 0; width: 40%; aspect-ratio: 1; border-radius: 50%; background: #E6DAC8; animation: flutua-a 7s ease-in-out infinite alternate"></div><div class="flutua" style="position: absolute; right: 18%; bottom: 4%; width: 26%; aspect-ratio: 1; border-radius: 50%; background: #707A3E; animation: flutua-b 8s ease-in-out infinite alternate"></div></div></div>
+</div>
+</header>
+
+<section style="position: relative; overflow: hidden">
+<div style="max-width: 1200px; margin: 0 auto; padding-left: clamp(20px, 5vw, 48px); padding-right: clamp(20px, 5vw, 48px); padding-top: 120px; padding-bottom: 120px; display: flex; flex-direction: column; gap: 56px">
+<div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 24px 64px">
+<div style="flex: 1 1 520px; display: flex; flex-direction: column; gap: 20px"><div style="font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #7A3044">Para quem é</div>
+<h2 class="revela" style="margin: 0; font-family: {{ fh }}; font-weight: {{ fw }}; font-size: calc(clamp(36px, 4vw, 52px) * {{ fs }}); line-height: calc(1.04 * {{ fl }}); letter-spacing: calc(-0.035em * {{ ft }}); color: #4E1A2B; text-wrap: balance">O que costuma trazer <em style="font-style: italic">mulheres até aqui</em></h2></div>
+<p style="margin: 0; flex: 1 1 340px; font-size: 18px; line-height: 1.6">Você não precisa saber dar nome ao que sente. Esses são alguns dos temas que mais aparecem no consultório.</p>
+</div>
+<div class="revela" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 20px">
+<div class="card" style="background: #FCF9F3; border: 1px solid #DED2C4; border-radius: 24px; padding: 30px 28px; display: flex; flex-direction: column; gap: 12px"><div style="width: 22px; height: 22px; border-radius: 50%; background: #4E1A2B"></div><h3 style="margin: 0; font-family: {{ fh }}; font-weight: {{ fw }}; font-size: calc(23px * {{ fs }}); line-height: calc(1.2 * {{ fl }}); letter-spacing: calc(-0.02em * {{ ft }}); color: #4E1A2B">Relacionamentos</h3><p style="margin: 0; font-size: 16px">Relações que pesam, padrões que se repetem, dificuldade de colocar limites.</p></div><div class="card" style="background: #FCF9F3; border: 1px solid #DED2C4; border-radius: 24px; padding: 30px 28px; display: flex; flex-direction: column; gap: 12px"><div style="width: 22px; height: 22px; border-radius: 50%; background: #707A3E"></div><h3 style="margin: 0; font-family: {{ fh }}; font-weight: {{ fw }}; font-size: calc(23px * {{ fs }}); line-height: calc(1.2 * {{ fl }}); letter-spacing: calc(-0.02em * {{ ft }}); color: #4E1A2B">Ansiedade</h3><p style="margin: 0; font-size: 16px">Cabeça que não desliga, preocupação constante, cansaço de estar sempre em alerta.</p></div><div class="card" style="background: #FCF9F3; border: 1px solid #DED2C4; border-radius: 24px; padding: 30px 28px; display: flex; flex-direction: column; gap: 12px"><div style="width: 22px; height: 22px; border-radius: 50%; background: #7A3044"></div><h3 style="margin: 0; font-family: {{ fh }}; font-weight: {{ fw }}; font-size: calc(23px * {{ fs }}); line-height: calc(1.2 * {{ fl }}); letter-spacing: calc(-0.02em * {{ ft }}); color: #4E1A2B">Autoestima</h3><p style="margin: 0; font-size: 16px">A sensação de nunca ser suficiente e uma cobrança que não dá trégua.</p></div><div class="card" style="background: #FCF9F3; border: 1px solid #DED2C4; border-radius: 24px; padding: 30px 28px; display: flex; flex-direction: column; gap: 12px"><div style="width: 22px; height: 22px; border-radius: 50%; background: #707A3E"></div><h3 style="margin: 0; font-family: {{ fh }}; font-weight: {{ fw }}; font-size: calc(23px * {{ fs }}); line-height: calc(1.2 * {{ fl }}); letter-spacing: calc(-0.02em * {{ ft }}); color: #4E1A2B">Trabalho e sobrecarga</h3><p style="margin: 0; font-size: 16px">Carreira, casa, família: dar conta de tudo e não sobrar nada para você.</p></div><div class="card" style="background: #FCF9F3; border: 1px solid #DED2C4; border-radius: 24px; padding: 30px 28px; display: flex; flex-direction: column; gap: 12px"><div style="width: 22px; height: 22px; border-radius: 50%; background: #7A3044"></div><h3 style="margin: 0; font-family: {{ fh }}; font-weight: {{ fw }}; font-size: calc(23px * {{ fs }}); line-height: calc(1.2 * {{ fl }}); letter-spacing: calc(-0.02em * {{ ft }}); color: #4E1A2B">Sexualidade</h3><p style="margin: 0; font-size: 16px">Desejo, prazer e intimidade, conversados com naturalidade e cuidado.</p></div><div class="card" style="background: #FCF9F3; border: 1px solid #DED2C4; border-radius: 24px; padding: 30px 28px; display: flex; flex-direction: column; gap: 12px"><div style="width: 22px; height: 22px; border-radius: 50%; background: #4E1A2B"></div><h3 style="margin: 0; font-family: {{ fh }}; font-weight: {{ fw }}; font-size: calc(23px * {{ fs }}); line-height: calc(1.2 * {{ fl }}); letter-spacing: calc(-0.02em * {{ ft }}); color: #4E1A2B">Recomeços</h3><p style="margin: 0; font-size: 16px">Fins, mudanças e decisões difíceis, quando é preciso se reencontrar.</p></div>
+</div>
+</div>
+</section>
+
+<section style="position: relative; overflow: hidden; background: #4E1A2B; color: #F7F1E8">
 <div class="px-a" style="position: absolute; left: -110px; bottom: -130px; width: 300px; height: 300px; border-radius: 50%; background: #7A3044"></div>
-<div style="position: relative; max-width: 1200px; margin: 0 auto; padding: 120px clamp(20px, 5vw, 48px); display: flex; flex-direction: column; gap: 56px">
+<div style="position: relative; max-width: 1200px; margin: 0 auto; padding-left: clamp(20px, 5vw, 48px); padding-right: clamp(20px, 5vw, 48px); padding-top: 120px; padding-bottom: 120px; display: flex; flex-direction: column; gap: 56px">
 <h2 class="revela" style="margin: 0; font-family: {{ fh }}; font-weight: {{ fw }}; font-size: calc(clamp(36px, 4vw, 52px) * {{ fs }}); line-height: calc(1.04 * {{ fl }}); letter-spacing: calc(-0.035em * {{ ft }})">Como <em style="font-style: italic; color: #E6DAC8">funciona</em></h2>
 <ol style="margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(230px, 100%), 1fr)); gap: 40px 32px">
-<li class="revela" style="display: flex; flex-direction: column; gap: 14px"><div style="width: 56px; height: 56px; border-radius: 50%; background: #E6DAC8; color: #4E1A2B; display: flex; align-items: center; justify-content: center; font-family: {{ fh }}; font-weight: {{ fw }}; font-size: calc(22px * {{ fs }})">1</div><h3 style="margin: 0; font-family: {{ fh }}; font-weight: {{ fw }}; font-size: calc(22px * {{ fs }}); letter-spacing: calc(-0.02em * {{ ft }})">Você me chama no WhatsApp</h3><p style="margin: 0; color: #E6DAC8">Eu mesma respondo, tiro suas dúvidas e te passo horários e valores.</p></li>
-<li class="revela" style="display: flex; flex-direction: column; gap: 14px"><div style="width: 56px; height: 56px; border-radius: 50%; background: #707A3E; color: #F7F1E8; display: flex; align-items: center; justify-content: center; font-family: {{ fh }}; font-weight: {{ fw }}; font-size: calc(22px * {{ fs }})">2</div><h3 style="margin: 0; font-family: {{ fh }}; font-weight: {{ fw }}; font-size: calc(22px * {{ fs }}); letter-spacing: calc(-0.02em * {{ ft }})">A gente marca a primeira sessão</h3><p style="margin: 0; color: #E6DAC8">Num horário que caiba na sua rotina, de verdade.</p></li>
-<li class="revela" style="display: flex; flex-direction: column; gap: 14px"><div style="width: 56px; height: 56px; border-radius: 50%; background: #F7F1E8; color: #4E1A2B; display: flex; align-items: center; justify-content: center; font-family: {{ fh }}; font-weight: {{ fw }}; font-size: calc(22px * {{ fs }})">3</div><h3 style="margin: 0; font-family: {{ fh }}; font-weight: {{ fw }}; font-size: calc(22px * {{ fs }}); letter-spacing: calc(-0.02em * {{ ft }})">Sessões online, de onde você estiver</h3><p style="margin: 0; color: #E6DAC8">Por videochamada, com [DURAÇÃO] e frequência [FREQUÊNCIA].</p></li>
-<li class="revela" style="display: flex; flex-direction: column; gap: 14px"><div style="width: 56px; height: 56px; border-radius: 50%; background: #7A3044; color: #F7F1E8; display: flex; align-items: center; justify-content: center; font-family: {{ fh }}; font-weight: {{ fw }}; font-size: calc(22px * {{ fs }}); border: 2px solid #E6DAC8; box-sizing: border-box">4</div><h3 style="margin: 0; font-family: {{ fh }}; font-weight: {{ fw }}; font-size: calc(22px * {{ fs }}); letter-spacing: calc(-0.02em * {{ ft }})">No seu ritmo</h3><p style="margin: 0; color: #E6DAC8">O processo respeita a sua história e o seu tempo.</p></li>
+<li class="revela" style="display: flex; flex-direction: column; gap: 14px"><div style="width: 56px; height: 56px; border-radius: 50%; background: #E6DAC8; color: #4E1A2B; display: flex; align-items: center; justify-content: center; margin: 0; font-family: {{ fh }}; font-weight: {{ fw }}; font-size: calc(22px * {{ fs }}); line-height: calc(1 * {{ fl }}); letter-spacing: calc(0em * {{ ft }})">1</div><h3 style="margin: 0; font-family: {{ fh }}; font-weight: {{ fw }}; font-size: calc(22px * {{ fs }}); line-height: calc(1.2 * {{ fl }}); letter-spacing: calc(-0.02em * {{ ft }})">Você me chama no WhatsApp</h3><p style="margin: 0; color: #E6DAC8">Eu mesma respondo, tiro suas dúvidas e te passo horários e valores.</p></li><li class="revela" style="display: flex; flex-direction: column; gap: 14px"><div style="width: 56px; height: 56px; border-radius: 50%; background: #707A3E; color: #F7F1E8; display: flex; align-items: center; justify-content: center; margin: 0; font-family: {{ fh }}; font-weight: {{ fw }}; font-size: calc(22px * {{ fs }}); line-height: calc(1 * {{ fl }}); letter-spacing: calc(0em * {{ ft }})">2</div><h3 style="margin: 0; font-family: {{ fh }}; font-weight: {{ fw }}; font-size: calc(22px * {{ fs }}); line-height: calc(1.2 * {{ fl }}); letter-spacing: calc(-0.02em * {{ ft }})">A gente marca a primeira sessão</h3><p style="margin: 0; color: #E6DAC8">Num horário que caiba na sua rotina, de verdade.</p></li><li class="revela" style="display: flex; flex-direction: column; gap: 14px"><div style="width: 56px; height: 56px; border-radius: 50%; background: #F7F1E8; color: #4E1A2B; display: flex; align-items: center; justify-content: center; margin: 0; font-family: {{ fh }}; font-weight: {{ fw }}; font-size: calc(22px * {{ fs }}); line-height: calc(1 * {{ fl }}); letter-spacing: calc(0em * {{ ft }})">3</div><h3 style="margin: 0; font-family: {{ fh }}; font-weight: {{ fw }}; font-size: calc(22px * {{ fs }}); line-height: calc(1.2 * {{ fl }}); letter-spacing: calc(-0.02em * {{ ft }})">Sessões online, de onde você estiver</h3><p style="margin: 0; color: #E6DAC8">Por videochamada, num lugar reservado onde você possa falar à vontade.</p></li><li class="revela" style="display: flex; flex-direction: column; gap: 14px"><div style="width: 56px; height: 56px; border-radius: 50%; background: #7A3044; color: #F7F1E8; display: flex; align-items: center; justify-content: center; margin: 0; font-family: {{ fh }}; font-weight: {{ fw }}; font-size: calc(22px * {{ fs }}); line-height: calc(1 * {{ fl }}); letter-spacing: calc(0em * {{ ft }}); border: 2px solid #E6DAC8; box-sizing: border-box">4</div><h3 style="margin: 0; font-family: {{ fh }}; font-weight: {{ fw }}; font-size: calc(22px * {{ fs }}); line-height: calc(1.2 * {{ fl }}); letter-spacing: calc(-0.02em * {{ ft }})">No seu ritmo</h3><p style="margin: 0; color: #E6DAC8">O processo respeita a sua história e o seu tempo.</p></li>
 </ol>
 </div>
 </section>
 
-<section id="perguntas">
-<div style="max-width: 1200px; margin: 0 auto; padding: 120px clamp(20px, 5vw, 48px); display: flex; flex-wrap: wrap; gap: 40px 80px">
-<div style="flex: 1 1 320px; min-width: 0">
-<h2 class="revela" style="margin: 0; font-family: {{ fh }}; font-weight: {{ fw }}; font-size: calc(clamp(36px, 4vw, 52px) * {{ fs }}); line-height: calc(1.04 * {{ fl }}); letter-spacing: calc(-0.035em * {{ ft }}); color: #4E1A2B">Perguntas <em style="font-style: italic">frequentes</em></h2>
+<section style="background: #E6DAC8">
+<div style="max-width: 1200px; margin: 0 auto; padding-left: clamp(20px, 5vw, 48px); padding-right: clamp(20px, 5vw, 48px); padding-top: 120px; padding-bottom: 120px; display: flex; flex-direction: column; gap: 48px">
+<h2 class="revela" style="margin: 0; font-family: {{ fh }}; font-weight: {{ fw }}; font-size: calc(clamp(36px, 4vw, 52px) * {{ fs }}); line-height: calc(1.04 * {{ fl }}); letter-spacing: calc(-0.035em * {{ ft }}); color: #4E1A2B; max-width: 760px; text-wrap: balance">Para começar sem <em style="font-style: italic">expectativa errada</em></h2>
+<div class="revela" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(380px, 100%), 1fr)); gap: 24px">
+<div class="card" style="background: #F7F1E8; border-radius: 24px; padding: 40px 36px; display: flex; flex-direction: column; gap: 22px">
+<h3 style="margin: 0; font-family: {{ fh }}; font-weight: {{ fw }}; font-size: calc(28px * {{ fs }}); line-height: calc(1.15 * {{ fl }}); letter-spacing: calc(-0.02em * {{ ft }}); color: #4E1A2B">A terapia <em style="font-style: italic">é</em></h3>
+<ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 16px; font-size: 17px">
+<li style="display: flex; gap: 14px; align-items: flex-start"><span style="width: 14px; height: 14px; margin-top: 6px; border-radius: 50%; background: #707A3E; flex-shrink: 0"></span><span>Um espaço seu, sem julgamento.</span></li><li style="display: flex; gap: 14px; align-items: flex-start"><span style="width: 14px; height: 14px; margin-top: 6px; border-radius: 50%; background: #707A3E; flex-shrink: 0"></span><span>Uma conversa com direção, em que eu também digo o que vejo.</span></li><li style="display: flex; gap: 14px; align-items: flex-start"><span style="width: 14px; height: 14px; margin-top: 6px; border-radius: 50%; background: #707A3E; flex-shrink: 0"></span><span>Um compromisso regular com você mesma.</span></li><li style="display: flex; gap: 14px; align-items: flex-start"><span style="width: 14px; height: 14px; margin-top: 6px; border-radius: 50%; background: #707A3E; flex-shrink: 0"></span><span>Sigilosa, como manda o Código de Ética do psicólogo.</span></li>
+</ul>
 </div>
+<div class="card" style="border: 1px solid #4E1A2B; border-radius: 24px; padding: 40px 36px; display: flex; flex-direction: column; gap: 22px">
+<h3 style="margin: 0; font-family: {{ fh }}; font-weight: {{ fw }}; font-size: calc(28px * {{ fs }}); line-height: calc(1.15 * {{ fl }}); letter-spacing: calc(-0.02em * {{ ft }}); color: #4E1A2B">A terapia <em style="font-style: italic">não é</em></h3>
+<ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 16px; font-size: 17px">
+<li style="display: flex; gap: 14px; align-items: flex-start"><span style="width: 14px; height: 14px; margin-top: 6px; border-radius: 50%; border: 2px solid #4E1A2B; box-sizing: border-box; flex-shrink: 0"></span><span>Conselho pronto ou receita.</span></li><li style="display: flex; gap: 14px; align-items: flex-start"><span style="width: 14px; height: 14px; margin-top: 6px; border-radius: 50%; border: 2px solid #4E1A2B; box-sizing: border-box; flex-shrink: 0"></span><span>Um lugar onde você precisa chegar sabendo o que dizer.</span></li><li style="display: flex; gap: 14px; align-items: flex-start"><span style="width: 14px; height: 14px; margin-top: 6px; border-radius: 50%; border: 2px solid #4E1A2B; box-sizing: border-box; flex-shrink: 0"></span><span>Só para quem está em crise.</span></li><li style="display: flex; gap: 14px; align-items: flex-start"><span style="width: 14px; height: 14px; margin-top: 6px; border-radius: 50%; border: 2px solid #4E1A2B; box-sizing: border-box; flex-shrink: 0"></span><span>Uma promessa de resultado com data marcada.</span></li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+
+<section>
+<div style="max-width: 1200px; margin: 0 auto; padding-left: clamp(20px, 5vw, 48px); padding-right: clamp(20px, 5vw, 48px); padding-top: 120px; padding-bottom: 0; display: flex; flex-direction: column; gap: 40px">
+<h2 class="revela" style="margin: 0; font-family: {{ fh }}; font-weight: {{ fw }}; font-size: calc(clamp(36px, 4vw, 52px) * {{ fs }}); line-height: calc(1.04 * {{ fl }}); letter-spacing: calc(-0.035em * {{ ft }}); color: #4E1A2B">Na <em style="font-style: italic">prática</em></h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr)); gap: 32px">
+<div class="revela" style="display: flex; flex-direction: column; gap: 8px; padding-top: 22px; border-top: 1px solid #DED2C4"><div style="font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #7A3044">Duração</div><div style="margin: 0; font-family: {{ fh }}; font-weight: {{ fw }}; font-size: calc(26px * {{ fs }}); line-height: calc(1.15 * {{ fl }}); letter-spacing: calc(-0.02em * {{ ft }}); color: #4E1A2B">[DURAÇÃO]</div><div style="font-size: 15px; color: #6B5559">por sessão</div></div><div class="revela" style="display: flex; flex-direction: column; gap: 8px; padding-top: 22px; border-top: 1px solid #DED2C4"><div style="font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #7A3044">Frequência</div><div style="margin: 0; font-family: {{ fh }}; font-weight: {{ fw }}; font-size: calc(26px * {{ fs }}); line-height: calc(1.15 * {{ fl }}); letter-spacing: calc(-0.02em * {{ ft }}); color: #4E1A2B">[FREQUÊNCIA]</div><div style="font-size: 15px; color: #6B5559">combinada com você</div></div><div class="revela" style="display: flex; flex-direction: column; gap: 8px; padding-top: 22px; border-top: 1px solid #DED2C4"><div style="font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #7A3044">Onde</div><div style="margin: 0; font-family: {{ fh }}; font-weight: {{ fw }}; font-size: calc(26px * {{ fs }}); line-height: calc(1.15 * {{ fl }}); letter-spacing: calc(-0.02em * {{ ft }}); color: #4E1A2B">Online</div><div style="font-size: 15px; color: #6B5559">por videochamada, de onde você estiver</div></div><div class="revela" style="display: flex; flex-direction: column; gap: 8px; padding-top: 22px; border-top: 1px solid #DED2C4"><div style="font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #7A3044">Valores</div><div style="margin: 0; font-family: {{ fh }}; font-weight: {{ fw }}; font-size: calc(26px * {{ fs }}); line-height: calc(1.15 * {{ fl }}); letter-spacing: calc(-0.02em * {{ ft }}); color: #4E1A2B">Pelo WhatsApp</div><div style="font-size: 15px; color: #6B5559">junto com os horários disponíveis</div></div>
+</div>
+</div>
+</section>
+
+<section>
+<div style="max-width: 1200px; margin: 0 auto; padding-left: clamp(20px, 5vw, 48px); padding-right: clamp(20px, 5vw, 48px); padding-top: 120px; padding-bottom: 120px; display: flex; flex-wrap: wrap; gap: 40px 80px">
+<div style="flex: 1 1 320px; min-width: 0"><h2 class="revela" style="margin: 0; font-family: {{ fh }}; font-weight: {{ fw }}; font-size: calc(clamp(36px, 4vw, 52px) * {{ fs }}); line-height: calc(1.04 * {{ fl }}); letter-spacing: calc(-0.035em * {{ ft }}); color: #4E1A2B">Perguntas <em style="font-style: italic">frequentes</em></h2></div>
 <div style="flex: 2 1 520px; min-width: 0; display: flex; flex-direction: column; border-top: 1px solid #DED2C4">
-<sc-for list="{{ faqs }}" as="f" hint-placeholder-count="6">
+<sc-for list="{{ faqs }}" as="f" hint-placeholder-count="7">
 <div style="border-bottom: 1px solid #DED2C4">
-<button type="button" class="faq" onClick="{{ f.toggle }}" aria-expanded="{{ f.isOpen }}" style="width: 100%; min-height: 72px; padding: 18px 0; background: none; border: 0; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 20px; text-align: left; font-family: {{ fh }}; font-weight: {{ fw }}; font-size: calc(20px * {{ fs }}); letter-spacing: calc(-0.015em * {{ ft }}); color: #2A1219">
+<button type="button" class="faq" onClick="{{ f.toggle }}" aria-expanded="{{ f.isOpen }}" style="width: 100%; min-height: 72px; padding: 18px 0; background: none; border: 0; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 20px; text-align: left; color: #2A1219; font-family: {{ fh }}; font-weight: {{ fw }}; font-size: calc(20px * {{ fs }}); line-height: calc(1.3 * {{ fl }}); letter-spacing: calc(-0.015em * {{ ft }})">
 <span>{{ f.q }}</span>
-<span class="sinal" style="width: 36px; height: 36px; border-radius: 50%; background: {{ f.signBg }}; color: {{ f.signColor }}; display: inline-flex; align-items: center; justify-content: center; font-size: 22px; line-height: 1; flex-shrink: 0">{{ f.sign }}</span>
+<span class="sinal" style="width: 36px; height: 36px; border-radius: 50%; background: {{ f.signBg }}; color: {{ f.signColor }}; display: inline-flex; align-items: center; justify-content: center; font-family: 'DM Sans', sans-serif; font-size: 22px; line-height: 1; flex-shrink: 0">{{ f.sign }}</span>
 </button>
 <sc-if value="{{ f.isOpen }}" hint-placeholder-val="{{ false }}">
 <p class="resposta" style="margin: 0; padding: 0 56px 24px 0; font-size: 17px; line-height: 1.6">{{ f.a }}</p>
@@ -199,24 +361,93 @@ a{color:inherit}a:hover{opacity:.85}
 </section>
 
 <section style="position: relative; overflow: hidden; background: #E6DAC8">
-<div class="px-b" style="position: absolute; inset: 0; pointer-events: none"><div class="flutua" style="position: absolute; right: 8%; top: -60px; width: 180px; height: 180px; border-radius: 50%; background: #4E1A2B; animation: flutua-a 8s ease-in-out infinite alternate"></div>
-<div class="flutua" style="position: absolute; right: 2%; top: 90px; width: 90px; height: 90px; border-radius: 50%; background: #707A3E; animation: flutua-b 7s ease-in-out infinite alternate"></div></div>
-<div style="position: relative; max-width: 1200px; margin: 0 auto; padding: 120px clamp(20px, 5vw, 48px); display: flex; flex-direction: column; gap: 28px; align-items: flex-start">
-<h2 class="revela" style="margin: 0; max-width: 760px; font-family: {{ fh }}; font-weight: {{ fw }}; font-size: calc(clamp(40px, 5vw, 68px) * {{ fs }}); line-height: calc(1 * {{ fl }}); letter-spacing: calc(-0.04em * {{ ft }}); color: #4E1A2B">Que tal começar <em style="font-style: italic">por uma conversa?</em></h2>
-<p style="margin: 0; max-width: 560px; font-size: 19px; line-height: 1.55">Me chama no WhatsApp. Eu respondo pessoalmente e te conto como funciona, os horários e os valores.</p>
-<a href="#" style="display: inline-flex; align-items: center; height: 56px; padding: 0 32px; background: #4E1A2B; color: #F7F1E8; font-size: 16px; font-weight: 600; text-decoration: none; border-radius: 999px" class="pill">Conversar com a My</a>
+<div class="px-b" style="position: absolute; inset: 0; pointer-events: none"><div class="flutua" style="position: absolute; right: 8%; top: -60px; width: 180px; height: 180px; border-radius: 50%; background: #4E1A2B; animation: flutua-a 8s ease-in-out infinite alternate"></div><div class="flutua so-desk" style="position: absolute; right: 2%; top: 90px; width: 90px; height: 90px; border-radius: 50%; background: #707A3E; animation: flutua-b 7s ease-in-out infinite alternate"></div></div>
+<div style="position: relative; max-width: 1200px; margin: 0 auto; padding-left: clamp(20px, 5vw, 48px); padding-right: clamp(20px, 5vw, 48px); padding-top: 120px; padding-bottom: 120px; display: flex; flex-direction: column; gap: 28px; align-items: flex-start">
+<h2 class="revela" style="margin: 0; font-family: {{ fh }}; font-weight: {{ fw }}; font-size: calc(clamp(40px, 5vw, 68px) * {{ fs }}); line-height: calc(1 * {{ fl }}); letter-spacing: calc(-0.04em * {{ ft }}); color: #4E1A2B; max-width: 760px">Ficou alguma <em style="font-style: italic">dúvida?</em></h2>
+<p style="margin: 0; max-width: 560px; font-size: 19px; line-height: 1.55">Me chama no WhatsApp. Eu respondo pessoalmente, sem compromisso.</p>
+<a href="#" class="pill" onClick="{{ goWhats }}" style="display: inline-flex; align-items: center; justify-content: center; height: 56px; padding: 0 32px; background: #4E1A2B; color: #F7F1E8; font-size: 16px; font-weight: 600; text-decoration: none; border-radius: 999px">Conversar com a My</a>
 </div>
 </section>
 
+</sc-if>
+<sc-if value="{{ isContato }}" hint-placeholder-val="{{ false }}">
+
+<header style="position: relative; overflow: hidden; background: #4E1A2B; color: #F7F1E8">
+<div class="flutua" style="position: absolute; right: -140px; top: -120px; width: 340px; height: 340px; border-radius: 50%; background: #7A3044; animation: flutua-c 9s ease-in-out infinite alternate"></div><div class="flutua" style="position: absolute; left: 38%; bottom: -60px; width: 120px; height: 120px; border-radius: 50%; background: #707A3E; animation: flutua-a 7s ease-in-out infinite alternate"></div>
+<div style="position: relative; max-width: 1200px; margin: 0 auto; padding-left: clamp(20px, 5vw, 48px); padding-right: clamp(20px, 5vw, 48px); padding-top: 32px; padding-bottom: 120px; display: flex; flex-wrap: wrap; align-items: center; gap: 56px 80px">
+<div style="flex: 1 1 500px; min-width: 0; display: flex; flex-direction: column; gap: 28px">
+<div class="entra d1" style="font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #E6DAC8">Contato</div>
+<h1 class="entra d2" style="margin: 0; font-family: {{ fh }}; font-weight: {{ fw }}; font-size: calc(clamp(44px, 6vw, 84px) * {{ fs }}); line-height: calc(0.98 * {{ fl }}); letter-spacing: calc(-0.04em * {{ ft }}); text-wrap: balance">Que tal começar <em style="font-style: italic; color: #E6DAC8">por uma conversa?</em></h1>
+<p class="entra d3" style="margin: 0; font-size: 19px; line-height: 1.55; max-width: 520px">Me chama no WhatsApp. Quem responde sou eu, sem robô e sem pressa. Conversar não te compromete com nada.</p>
+</div>
+<div class="entra d3" style="flex: 1 1 380px; min-width: 0; display: flex; flex-direction: column; gap: 8px">
+<div class="card" style="background: #F7F1E8; color: #2A1219; border-radius: 24px; padding: 32px; display: flex; flex-direction: column; gap: 18px">
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 16px">
+<div style="font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #7A3044">WhatsApp</div>
+<span style="display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: #3F6B45"><span class="respira" style="width: 8px; height: 8px; border-radius: 50%; background: #3F6B45"></span>Resposta pessoal</span>
+</div>
+<div style="margin: 0; font-family: {{ fh }}; font-weight: {{ fw }}; font-size: calc(clamp(28px, 3vw, 36px) * {{ fs }}); line-height: calc(1.1 * {{ fl }}); letter-spacing: calc(-0.02em * {{ ft }}); color: #4E1A2B">[NÚMERO]</div>
+<div style="font-size: 15px; color: #6B5559">Respondo em até [PRAZO], de segunda a sexta.</div>
+<a href="#" class="pill" onClick="{{ goWhats }}" style="display: inline-flex; align-items: center; justify-content: center; height: 56px; padding: 0 32px; background: #4E1A2B; color: #F7F1E8; font-size: 16px; font-weight: 600; text-decoration: none; border-radius: 999px; gap: 10px"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 15.5 3 18l2.8-1A8 8 0 1 0 4 15.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg><span>Abrir conversa</span></a>
+</div>
+<div style="padding: 8px 4px 0">
+<a href="#" class="linha" style="display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 18px 0; border-top: 1px solid #7A3044; text-decoration: none"><span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #E6DAC8">Instagram</span><span style="font-size: 18px; font-weight: 600">@mykellypsicologa</span><span style="font-size: 14px; color: #E6DAC8">Conteúdo sobre autoconhecimento</span></span><span class="ponto" style="width: 12px; height: 12px; border-radius: 50%; background: #707A3E; flex-shrink: 0"></span></a><a href="#" class="linha" style="display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 18px 0; border-top: 1px solid #7A3044; text-decoration: none"><span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #E6DAC8">E-mail</span><span style="font-size: 18px; font-weight: 600">[E-MAIL]</span><span style="font-size: 14px; color: #E6DAC8">Para assuntos que não são agendamento</span></span><span class="ponto" style="width: 12px; height: 12px; border-radius: 50%; background: #707A3E; flex-shrink: 0"></span></a>
+</div>
+</div>
+</div>
+</header>
+
+<section style="position: relative; overflow: hidden">
+<div style="max-width: 1200px; margin: 0 auto; padding-left: clamp(20px, 5vw, 48px); padding-right: clamp(20px, 5vw, 48px); padding-top: 120px; padding-bottom: 120px; display: flex; flex-wrap: wrap; align-items: center; gap: 48px 96px">
+<div style="flex: 1 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 20px">
+<h2 class="revela" style="margin: 0; font-family: {{ fh }}; font-weight: {{ fw }}; font-size: calc(clamp(36px, 4vw, 52px) * {{ fs }}); line-height: calc(1.04 * {{ fl }}); letter-spacing: calc(-0.035em * {{ ft }}); color: #4E1A2B; text-wrap: balance">Não sabe o que escrever? <em style="font-style: italic">Pode ser só um oi.</em></h2>
+<p style="margin: 0; font-size: 18px; line-height: 1.6">Muita gente trava na primeira mensagem. Se ajudar, é só usar esta aqui.</p>
+</div>
+<div class="revela" style="flex: 1 1 420px; min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 20px">
+<div style="position: relative; max-width: 440px; background: #E6DAC8; border-radius: 24px 24px 24px 6px; padding: 24px 28px; font-size: 19px; line-height: 1.5">Oi, My! Vi seu site e queria saber sobre horários para começar a terapia.</div>
+<a href="#" class="seta" onClick="{{ goWhats }}" style="display: inline-flex; align-items: center; gap: 12px; font-size: 16px; font-weight: 600; text-decoration: none; color: #4E1A2B"><span>Enviar essa mensagem</span><span class="seta-ic" style="width: 36px; height: 36px; border-radius: 50%; background: #707A3E; color: #F7F1E8; display: inline-flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></span></a>
+</div>
+</div>
+</section>
+
+<section style="background: #E6DAC8">
+<div style="max-width: 1200px; margin: 0 auto; padding-left: clamp(20px, 5vw, 48px); padding-right: clamp(20px, 5vw, 48px); padding-top: 120px; padding-bottom: 120px; display: flex; flex-direction: column; gap: 56px">
+<h2 class="revela" style="margin: 0; font-family: {{ fh }}; font-weight: {{ fw }}; font-size: calc(clamp(36px, 4vw, 52px) * {{ fs }}); line-height: calc(1.04 * {{ fl }}); letter-spacing: calc(-0.035em * {{ ft }}); color: #4E1A2B">Depois que você <em style="font-style: italic">me chama</em></h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); gap: 40px 32px">
+<div class="revela" style="display: flex; flex-direction: column; gap: 14px"><div style="width: 56px; height: 56px; border-radius: 50%; background: #4E1A2B; color: #F7F1E8; display: flex; align-items: center; justify-content: center; margin: 0; font-family: {{ fh }}; font-weight: {{ fw }}; font-size: calc(22px * {{ fs }}); line-height: calc(1 * {{ fl }}); letter-spacing: calc(0em * {{ ft }})">1</div><h3 style="margin: 0; font-family: {{ fh }}; font-weight: {{ fw }}; font-size: calc(23px * {{ fs }}); line-height: calc(1.2 * {{ fl }}); letter-spacing: calc(-0.02em * {{ ft }}); color: #4E1A2B">Eu respondo</h3><p style="margin: 0">Pessoalmente, assim que eu puder. Você pode perguntar o que quiser.</p></div><div class="revela" style="display: flex; flex-direction: column; gap: 14px"><div style="width: 56px; height: 56px; border-radius: 50%; background: #707A3E; color: #F7F1E8; display: flex; align-items: center; justify-content: center; margin: 0; font-family: {{ fh }}; font-weight: {{ fw }}; font-size: calc(22px * {{ fs }}); line-height: calc(1 * {{ fl }}); letter-spacing: calc(0em * {{ ft }})">2</div><h3 style="margin: 0; font-family: {{ fh }}; font-weight: {{ fw }}; font-size: calc(23px * {{ fs }}); line-height: calc(1.2 * {{ fl }}); letter-spacing: calc(-0.02em * {{ ft }}); color: #4E1A2B">Te explico tudo</h3><p style="margin: 0">Como funciona, horários disponíveis e valores. Sem letra miúda.</p></div><div class="revela" style="display: flex; flex-direction: column; gap: 14px"><div style="width: 56px; height: 56px; border-radius: 50%; border: 2px solid #4E1A2B; box-sizing: border-box; color: #4E1A2B; display: flex; align-items: center; justify-content: center; margin: 0; font-family: {{ fh }}; font-weight: {{ fw }}; font-size: calc(22px * {{ fs }}); line-height: calc(1 * {{ fl }}); letter-spacing: calc(0em * {{ ft }})">3</div><h3 style="margin: 0; font-family: {{ fh }}; font-weight: {{ fw }}; font-size: calc(23px * {{ fs }}); line-height: calc(1.2 * {{ fl }}); letter-spacing: calc(-0.02em * {{ ft }}); color: #4E1A2B">Você decide</h3><p style="margin: 0">Se fizer sentido, a gente marca a primeira sessão. Se não, tudo bem também.</p></div>
+</div>
+</div>
+</section>
+
+<section>
+<div style="max-width: 1200px; margin: 0 auto; padding-left: clamp(20px, 5vw, 48px); padding-right: clamp(20px, 5vw, 48px); padding-top: 96px; padding-bottom: 120px">
+<div class="revela" style="position: relative; overflow: hidden; border: 1px solid #4E1A2B; border-radius: 24px; padding: clamp(28px, 4vw, 48px); display: flex; flex-wrap: wrap; gap: 28px 56px">
+<div style="flex: 1 1 360px; min-width: 0; display: flex; flex-direction: column; gap: 14px">
+<div style="font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #7A3044">Se for urgente</div>
+<h2 style="margin: 0; font-family: {{ fh }}; font-weight: {{ fw }}; font-size: calc(clamp(28px, 3vw, 36px) * {{ fs }}); line-height: calc(1.1 * {{ fl }}); letter-spacing: calc(-0.025em * {{ ft }}); color: #4E1A2B">Se você está passando por uma crise agora</h2>
+<p style="margin: 0">Este canal não é de atendimento de urgência e eu posso demorar para ver sua mensagem. Procure ajuda imediata:</p>
+</div>
+<div style="flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 12px; justify-content: center">
+<div style="display: flex; align-items: center; gap: 18px; padding: 16px 20px; background: #4E1A2B; color: #F7F1E8; border-radius: 999px"><span style="margin: 0; font-family: {{ fh }}; font-weight: {{ fw }}; font-size: calc(30px * {{ fs }}); line-height: calc(1 * {{ fl }}); letter-spacing: calc(-0.02em * {{ ft }})">188</span><span style="font-size: 15px; line-height: 1.35">CVV, apoio emocional<br>Ligação gratuita, 24 horas</span></div>
+<div style="display: flex; align-items: center; gap: 18px; padding: 16px 20px; background: #E6DAC8; color: #4E1A2B; border-radius: 999px"><span style="margin: 0; font-family: {{ fh }}; font-weight: {{ fw }}; font-size: calc(30px * {{ fs }}); line-height: calc(1 * {{ fl }}); letter-spacing: calc(-0.02em * {{ ft }})">192</span><span style="font-size: 15px; line-height: 1.35">SAMU, emergência médica</span></div>
+<div style="font-size: 15px; color: #6B5559; padding-left: 4px">Ou vá ao pronto-socorro mais próximo.</div>
+</div>
+</div>
+</div>
+</section>
+
+</sc-if>
+
 <footer style="background: #4E1A2B; color: #F7F1E8">
-<div style="max-width: 1200px; margin: 0 auto; padding: 72px clamp(20px, 5vw, 48px) 40px; display: flex; flex-direction: column; gap: 48px">
+<div style="max-width: 1200px; margin: 0 auto; padding-left: clamp(20px, 5vw, 48px); padding-right: clamp(20px, 5vw, 48px); padding-top: 72px; padding-bottom: 40px; display: flex; flex-direction: column; gap: 48px">
 <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 40px">
-<div style="display: flex; flex-direction: column; gap: 12px">
-<div style="font-family: Epilogue, Arial, sans-serif; font-weight: 600; font-size: 30px; line-height: 1; letter-spacing: -0.03em; white-space: nowrap; padding-top: 10px">Mykelly Pel<span style="position: relative; display: inline-block">ı<span style="position: absolute; left: 50%; top: -0.07em; width: 0.3em; height: 0.3em; margin-left: -0.15em; border-radius: 50%; background: #F7F1E8"></span></span>gr<span style="position: relative; display: inline-block">ı<span style="position: absolute; left: 50%; top: -0.19em; width: 0.3em; height: 0.3em; margin-left: -0.15em; border-radius: 50%; background: #707A3E"></span></span>nel<span style="position: relative; display: inline-block">ı<span style="position: absolute; left: 50%; top: -0.31em; width: 0.3em; height: 0.3em; margin-left: -0.15em; border-radius: 50%; background: #F7F1E8"></span></span></div>
+<div style="display: flex; flex-direction: column; gap: 12px"><span style="display: inline-block; font-family: Epilogue, Arial, sans-serif; font-weight: 600; font-size: 30px; line-height: 1; letter-spacing: -0.03em; white-space: nowrap; padding-top: 10px">Mykelly Pel<span style="position: relative; display: inline-block">ı<span style="position: absolute; left: 50%; top: -0.07em; width: 0.3em; height: 0.3em; margin-left: -0.15em; border-radius: 50%; background: #F7F1E8"></span></span>gr<span style="position: relative; display: inline-block">ı<span style="position: absolute; left: 50%; top: -0.19em; width: 0.3em; height: 0.3em; margin-left: -0.15em; border-radius: 50%; background: #707A3E"></span></span>nel<span style="position: relative; display: inline-block">ı<span style="position: absolute; left: 50%; top: -0.31em; width: 0.3em; height: 0.3em; margin-left: -0.15em; border-radius: 50%; background: #F7F1E8"></span></span></span>
 <div style="font-size: 12px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: #E6DAC8">Autoconhecimento em movimento</div>
 </div>
 <div style="display: flex; flex-wrap: wrap; gap: 32px 72px; font-size: 15px">
-<div style="display: flex; flex-direction: column; gap: 8px"><div style="font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #E6DAC8">Contato</div><a href="#" style="text-decoration: none">WhatsApp</a><a href="#" style="text-decoration: none">Instagram @mykellypsicologa</a></div>
+<div style="display: flex; flex-direction: column; gap: 8px"><div style="font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #E6DAC8">Páginas</div>
+<sc-for list="{{ nav }}" as="n" hint-placeholder-count="4"><a href="#" onClick="{{ n.go }}" style="text-decoration: none">{{ n.label }}</a></sc-for></div>
+<div style="display: flex; flex-direction: column; gap: 8px"><div style="font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #E6DAC8">Contato</div><a href="#" onClick="{{ goWhats }}" style="text-decoration: none">WhatsApp</a><a href="#" style="text-decoration: none">Instagram @mykellypsicologa</a><div>[E-MAIL]</div></div>
 <div style="display: flex; flex-direction: column; gap: 8px"><div style="font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #E6DAC8">Atendimento</div><div>Psicoterapia online para mulheres</div><div>Psicóloga · CRP [NÚMERO]</div></div>
 </div>
 </div>
@@ -227,16 +458,35 @@ a{color:inherit}a:hover{opacity:.85}
 </div>
 </footer>
 
+<div class="respiro-cel" aria-hidden="true"></div>
+<div class="barra-cel" style="position: fixed; left: 16px; right: 16px; bottom: 16px; z-index: 40; height: 60px; border-radius: 999px; background: #4E1A2B; color: #F7F1E8; align-items: center; justify-content: space-between; padding: 0 8px 0 24px; box-sizing: border-box; box-shadow: 0 10px 30px rgba(42,18,25,.25)">
+<div style="display: flex; flex-direction: column; line-height: 1.25"><div style="font-size: 15px; font-weight: 600">Conversar com a My</div><div style="font-size: 12px; color: #E6DAC8">Resposta pessoal no WhatsApp</div></div>
+<a href="#" onClick="{{ goWhats }}" aria-label="Abrir conversa no WhatsApp" style="width: 46px; height: 46px; border-radius: 50%; background: #707A3E; display: flex; align-items: center; justify-content: center; color: #F7F1E8"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 15.5 3 18l2.8-1A8 8 0 1 0 4 15.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg></a>
+</div>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":5480}}'>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":4540}}'>
 class Component extends DCLogic {
 constructor(props) {
 super(props);
-this.state = { open: 0, font: 'epilogue', panelOpen: true };
+this.state = { page: 'home', open: 0, font: 'epilogue', panelOpen: true, menuOpen: false };
+}
+go(id) {
+this.setState({ page: id, menuOpen: false, open: 0 });
+try { window.scrollTo({ top: 0, behavior: 'instant' }); } catch (e) {}
 }
 renderVals() {
-const open = this.state.open;
+const page = this.state.page;
+const PAGES = [
+{ id: 'home', label: 'Início', mdot: '#E6DAC8' },
+{ id: 'sobre', label: 'Quem sou', mdot: '#707A3E' },
+{ id: 'terapia', label: 'A terapia', mdot: '#7A3044' },
+{ id: 'contato', label: 'Contato', mdot: '#F7F1E8' }
+];
+const nav = PAGES.map(p => {
+const a = p.id === page;
+return { label: p.label, mdot: p.mdot, current: a ? 'page' : 'false', op: a ? 1 : 0.78, dot: a ? '#707A3E' : 'transparent', go: () => this.go(p.id) };
+});
 const FONTS = [
 { id: 'epilogue', name: 'Epilogue', note: 'Atual · sem serifa', family: "Epilogue, 'Helvetica Neue', Arial, sans-serif", fw: 600, fw2: 500, fs: 1, ft: 1, fl: 1 },
 { id: 'dmserif', name: 'DM Serif Display', note: 'Serifa de contraste, só um peso', family: "'DM Serif Display', Georgia, serif", fw: 400, fw2: 400, fs: 1.02, ft: 0.25, fl: 1.06 },
@@ -247,16 +497,9 @@ const FONTS = [
 const cur = FONTS.find(f => f.id === this.state.font) || FONTS[0];
 const fonts = FONTS.map(f => {
 const active = f.id === cur.id;
-return {
-name: f.name, note: f.note, family: f.family, weight: f.fw,
-sample: Math.round(30 * f.fs) + 'px',
-active: active,
-bg: active ? '#4E1A2B' : '#FCF9F3',
-fg: active ? '#F7F1E8' : '#2A1219',
-muted: active ? '#E6DAC8' : '#6B5559',
-border: active ? '#4E1A2B' : '#DED2C4',
-pick: () => this.setState({ font: f.id })
-};
+return { name: f.name, note: f.note, family: f.family, weight: f.fw, sample: Math.round(30 * f.fs) + 'px', active: active,
+bg: active ? '#4E1A2B' : '#FCF9F3', fg: active ? '#F7F1E8' : '#2A1219', muted: active ? '#E6DAC8' : '#6B5559', border: active ? '#4E1A2B' : '#DED2C4',
+pick: () => this.setState({ font: f.id }) };
 });
 const list = [
 { q: 'Como funciona a terapia online?', a: 'As sessões acontecem por videochamada, num horário fixo que a gente combina. Você só precisa de um lugar reservado, onde possa falar à vontade.' },
@@ -264,26 +507,23 @@ const list = [
 { q: 'Você atende só mulheres?', a: 'Sim. Meu trabalho é dedicado a mulheres adultas e ao que atravessa a vida delas: relações, trabalho, maternidade, autoestima e sexualidade.' },
 { q: 'Preciso estar em crise para começar?', a: 'Não. Muitas mulheres chegam porque sentem que se perderam de si, mesmo com a vida “funcionando”. Isso já é motivo suficiente.' },
 { q: 'E se eu não souber por onde começar?', a: 'Tudo bem. A gente começa pelo que estiver mais presente para você. Organizar o que você sente faz parte do trabalho.' },
-{ q: 'A sexualidade entra na terapia?', a: 'Se e quando fizer sentido para você. Também sou sexóloga, então esse é um tema que a gente pode tratar com naturalidade e cuidado.' }
+{ q: 'A sexualidade entra na terapia?', a: 'Se e quando fizer sentido para você. Também sou sexóloga, então esse é um tema que a gente pode tratar com naturalidade e cuidado.' },
+{ q: 'O que eu falo na terapia fica entre nós?', a: 'Sim. O sigilo é um dever ético do psicólogo. As exceções são raras e previstas no Código de Ética, como risco à vida.' }
 ];
+const open = this.state.open;
 const faqs = list.map((f, i) => {
 const isOpen = i === open;
-return {
-q: f.q,
-a: f.a,
-isOpen: isOpen,
-sign: isOpen ? '−' : '+',
-signBg: isOpen ? '#4E1A2B' : '#E6DAC8',
-signColor: isOpen ? '#F7F1E8' : '#4E1A2B',
-toggle: () => this.setState({ open: isOpen ? -1 : i })
-};
+return { q: f.q, a: f.a, isOpen: isOpen, sign: isOpen ? '−' : '+', signBg: isOpen ? '#4E1A2B' : '#E6DAC8', signColor: isOpen ? '#F7F1E8' : '#4E1A2B',
+toggle: () => this.setState({ open: isOpen ? -1 : i }) };
 });
 return {
-faqs: faqs,
-fonts: fonts,
+isHome: page === 'home', isSobre: page === 'sobre', isTerapia: page === 'terapia', isContato: page === 'contato',
+nav: nav, fonts: fonts, faqs: faqs,
+goHome: () => this.go('home'), goSobre: () => this.go('sobre'), goTerapia: () => this.go('terapia'), goContato: () => this.go('contato'),
+goWhats: () => this.go('contato'),
+menuOpen: this.state.menuOpen, toggleMenu: () => this.setState({ menuOpen: !this.state.menuOpen }),
 fh: cur.family, fw: cur.fw, fw2: cur.fw2, fs: cur.fs, ft: cur.ft, fl: cur.fl,
-panelOpen: this.state.panelOpen,
-panelSign: this.state.panelOpen ? '−' : '+',
+panelOpen: this.state.panelOpen, panelSign: this.state.panelOpen ? '−' : '+',
 togglePanel: () => this.setState({ panelOpen: !this.state.panelOpen })
 };
 }
